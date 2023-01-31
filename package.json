@@ -1,0 +1,32 @@
+{
+  "name": "crab-game",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/crab-game.umd.cjs",
+  "module": "./dist/crab-game.js",
+  "exports": {
+    ".": {
+      "import": "./dist/crab-game.js",
+      "require": "./dist/crab-game.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "tsc && vite build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react": "^3.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  }
+}
