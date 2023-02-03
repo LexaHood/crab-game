@@ -2,7 +2,7 @@
 
 ### Экспозе
 
-В основе проекта React и Vite. Проект состоит из React приложения компилирующиегося в [web component](https://developer.mozilla.org/ru/docs/Web/Web_Components).
+В основе проекта Preact и Vite. Проект состоит из Preact компонента, регистрируемого как [web component](https://developer.mozilla.org/ru/docs/Web/Web_Components).
 
 ## Разработка
 

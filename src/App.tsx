@@ -6,21 +6,23 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div class="App">
+    <>
       <style>{style}</style>
 
-      <div>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} class="logo" alt="React logo" />
-        </a>
+      <div class="GameApp">
+        <div>
+          <a href="https://reactjs.org" target="_blank">
+            <img src={reactLogo} class="GameApp__logo" alt="React logo" />
+          </a>
+        </div>
+        <h1>Vite + Preact</h1>
+        <div class="GameApp__card">
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+        </div>
       </div>
-      <h1>Vite + Preact</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </div>
+    </>
   )
 }
 
