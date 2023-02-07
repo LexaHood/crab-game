@@ -16,5 +16,10 @@ export default defineConfig(({ mode }) => ({
     },
     cssCodeSplit: true
   },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src')
+    },
+  },
   define: { 'process.env.NODE_ENV': `"${mode}"` }
 }))

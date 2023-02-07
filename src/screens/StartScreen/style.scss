@@ -1,0 +1,38 @@
+.GameApp {
+  .StartScreen {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+  }
+
+  .StartScreen__bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: hue-rotate(45deg) brightness(0.5);
+  }
+
+  .StartScreen__title {
+    font-size: 400%;
+    color: white;
+    text-transform: uppercase;
+    filter: drop-shadow(2px 4px 6px black);
+  }
+
+  .StartScreen__startButton {
+    font-size: 200%;
+    padding: 1.1% 4%;
+    border-radius: 6px;
+    color: white;
+    background: var(--clr-primary);
+    width: fit-content;
+  }
+}
