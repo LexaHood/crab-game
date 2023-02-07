@@ -1,26 +1,25 @@
 import { useState } from 'preact/hooks'
-import reactLogo from './assets/react.svg'
 import style from './App.css?inline'
 
+import StartMenu from './screens/StartMenu'
+import Playing from './screens/Playing/Index'
+
+export const screens = {
+  startMenu: StartMenu,
+  playing: Playing
+} as const
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [screen, setScreen] = useState<keyof typeof screens>('startMenu')
+
+  const CurrentScreen = screens[screen]
 
   return (
     <>
       <style>{style}</style>
 
       <div class="GameApp">
-        <div>
-          <a href="https://reactjs.org" target="_blank">
-            <img src={reactLogo} class="GameApp__logo" alt="React logo" />
-          </a>
-        </div>
-        <h1>Vite + Preact</h1>
-        <div class="GameApp__card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-        </div>
+        <CurrentScreen setScreen={setScreen} />
       </div>
     </>
   )
