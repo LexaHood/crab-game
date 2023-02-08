@@ -11,8 +11,8 @@ export const screens = {
 } as const
 
 function App() {
-  // const [screen, setScreen] = useState<keyof typeof screens>('startScreen')
-  const [screen, setScreen] = useState<keyof typeof screens>('gameScreen')
+  const [screen, setScreen] = useState<keyof typeof screens>('startScreen')
+  // const [screen, setScreen] = useState<keyof typeof screens>('gameScreen')
 
   const CurrentScreen = screens[screen]
 
