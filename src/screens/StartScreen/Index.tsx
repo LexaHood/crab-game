@@ -1,7 +1,7 @@
 import type { StateUpdater } from 'preact/hooks'
 import StylerComponent from '@/components/StylerComponent'
 import style from './style.scss?inline'
-import industrialBackground from '@/assets/industrial-background.jpg'
+import background from '@/assets/background.jpg'
 import type { screens } from '@/App'
 
 export default function ({ setScreen }: { setScreen: StateUpdater<keyof typeof screens> }) {
@@ -9,7 +9,7 @@ export default function ({ setScreen }: { setScreen: StateUpdater<keyof typeof s
     <div class="StartScreen">
       <img
         class="StartScreen__bg"
-        src={industrialBackground}
+        src={background}
       />
       <h1 class="StartScreen__title">
         Веселый краб
