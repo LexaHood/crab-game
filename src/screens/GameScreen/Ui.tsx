@@ -1,10 +1,9 @@
-import style from './ui.scss?inline'
-import StylerComponent from '@/components/StylerComponent'
+import StylerComponent from "@/components/StylerComponent";
 
-export default function () {
+import style from "./ui.scss?inline";
+
+export default function Ui() {
   return <StylerComponent style={style}>
-    <div class='Ui'>
-
-    </div>
-  </StylerComponent>
+    <div class='Ui' />
+  </StylerComponent>;
 }

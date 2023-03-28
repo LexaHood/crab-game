@@ -1,26 +1,27 @@
-import { useState } from 'preact/hooks'
-import StylerComponent from '@/components/StylerComponent'
-import style from './App.scss?inline'
+import { useState } from "preact/hooks";
 
-import StartScreen from './screens/StartScreen/Index'
-import GameScreen from './screens/GameScreen/Index'
+import StylerComponent from "@/components/StylerComponent";
+
+import style from "./App.scss?inline";
+import GameScreen from "./screens/GameScreen/Index";
+import StartScreen from "./screens/StartScreen/Index";
 
 export const screens = {
   startScreen: StartScreen,
   gameScreen: GameScreen
-} as const
+} as const;
 
 function App() {
-  const [screen, setScreen] = useState<keyof typeof screens>('startScreen')
+  const [screen, setScreen] = useState<keyof typeof screens>("startScreen");
   // const [screen, setScreen] = useState<keyof typeof screens>('gameScreen')
 
-  const CurrentScreen = screens[screen]
+  const CurrentScreen = screens[screen];
 
   return <StylerComponent style={style}>
     <div class="GameApp">
       <CurrentScreen setScreen={setScreen} />
     </div>
-  </StylerComponent>
+  </StylerComponent>;
 }
 
-export default App
+export default App;

@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
-import preact from '@preact/preset-vite'
+import preact from "@preact/preset-vite";
+import { resolve } from "path";
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -10,16 +10,16 @@ export default defineConfig(({ mode }) => ({
   build: {
     watch: {},
     lib: {
-      entry: resolve(__dirname, 'src/main.tsx'),
-      name: 'CrabGame',
-      fileName: 'crab-game',
+      entry: resolve(__dirname, "src/main.tsx"),
+      name: "CrabGame",
+      fileName: "crab-game",
     },
     cssCodeSplit: true
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
+      "@": resolve(__dirname, "./src")
     },
   },
-  define: { 'process.env.NODE_ENV': `"${mode}"` }
-}))
+  define: { "process.env.NODE_ENV": `"${mode}"` }
+}));

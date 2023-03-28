@@ -7,5 +7,5 @@ export default function StylerComponent({ style, children }: { style: string; ch
 
       {children}
     </>
-  )
+  );
 }

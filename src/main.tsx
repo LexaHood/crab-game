@@ -1,4 +1,5 @@
-import register from 'preact-custom-element'
-import App from './App'
+import register from "preact-custom-element";
 
-register(App, 'x-game', [], { shadow: true });
+import App from "./App";
+
+register(App, "x-game", [], { shadow: true });

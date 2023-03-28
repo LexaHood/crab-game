@@ -1,15 +1,17 @@
-import type { StateUpdater } from 'preact/hooks'
-import StylerComponent from '@/components/StylerComponent'
-import style from './style.scss?inline'
-import type { screens } from '@/App'
-import Crab from './Crab'
-import Ui from './Ui'
+import type { StateUpdater } from "preact/hooks";
 
-export default function ({ setScreen }: { setScreen: StateUpdater<keyof typeof screens> }) {
+import type { screens } from "@/App";
+import StylerComponent from "@/components/StylerComponent";
+
+import Crab from "./Crab";
+import style from "./style.scss?inline";
+import Ui from "./Ui";
+
+export default function GameScreen({ setScreen }: { setScreen: StateUpdater<keyof typeof screens> }) {
   return <StylerComponent style={style}>
     <div class="GameScreen">
       <Ui />
       <Crab />
     </div>
-  </StylerComponent>
+  </StylerComponent>;
 }
