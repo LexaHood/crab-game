@@ -1,7 +1,11 @@
 .Fish {
+  position: absolute;
+}
+
+.Fish__body {
   width: 100px;
   height: 100px;
   background-color: red;
   opacity: .5;
-  transition: transform 5s;
+  transform: translate(-50%, -50%);
 }
