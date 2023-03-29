@@ -28,7 +28,7 @@ function App() {
     }
 
     setDimensions({ 
-      x: app.current.clientWidth,
+      x: app.current.clientWidth + 200,
       y: app.current.clientHeight 
     });
   }, []);

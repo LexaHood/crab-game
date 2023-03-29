@@ -19,27 +19,22 @@ export default function Fish({ dimensions }: { dimensions: Tdimensions }) {
   }
 
   const [coords, setCoords] = useState<Tcoords>(getRandomCoords());
-  let travelDuration = 3000 + Math.random() * 5000;
+  const [travelDuration] = useState<number>(4000 + Math.random() * 4000);
 
   useEffect(() => {
-    travelDuration = 3000 + Math.random() * 5000;
-    updateSwimDestination(travelDuration);
-  }, []);
-
-  function updateSwimDestination(tD: number) {
     setCoords(getRandomCoords());
-    
-    setTimeout(() => {
-      updateSwimDestination(tD);
-    }, tD);
-  }
+
+    setInterval(() => {
+      setCoords(getRandomCoords());
+    }, travelDuration);
+  }, []);
 
   return <StylerComponent style={style}>
     <div
       class="Fish"
       style={{
-        transform: `translate(${coords.x}px, ${coords.y}px)`,
-        transition: `transform ${travelDuration}ms linear`
+        transform: `translate(${coords.x - 100}px, ${coords.y}px)`,
+        transition: `transform ${travelDuration}ms ease-in-out`
       }}
     >
       <div class="Fish__body"></div>

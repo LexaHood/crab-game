@@ -5,9 +5,9 @@ import Fish from "./Fish";
 import style from "./fishes.scss?inline";
 
 export default function Fishes({ dimensions }: {dimensions: Tdimensions, }) {
-  const fishTotalAmount = 20;
+  const fishTotalAmount = 10;
   const fishes = [];
-  for (let i = 0; i <= fishTotalAmount; i += 1) {
+  for (let i = 0; i < fishTotalAmount; i += 1) {
     fishes.push(<Fish dimensions={dimensions} />);
   }
 
