@@ -12,21 +12,38 @@
   .Crab {
     position: absolute;
     width: 40%;
+    height: 40%;
     bottom: 0;
     left: 50%;
     transform: translate(-50%);
   }
 
   .Crab__body {
-    transform-origin: bottom;
-    animation: 2s infinite alternate rock linear;
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 
-  .Crab__body__itself {
-    position: relative;
+  .Crab__body__torsoRotator {
+    position: absolute;
+    width: 70%;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .Crab__body__torsoRotator__torso {
+    object-fit: cover;
+    animation: 2s infinite alternate rock linear;
+    width: 100%;
+  }
+
+  .Crab__body__limbs {
+    position: absolute;
     object-fit: cover;
     display: block;
     width: 100%;
+    bottom: 0;
   }
 
   .Crab__body__eyes {
@@ -39,14 +56,13 @@
 
   .Crab__body__eyes__eye {
     position: absolute;
-    height: 10%;
+    height: 5%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     background: black;
-    top: 6.5%;
-    transform-origin: center 60%;
+    top: 32%;
 
-    $eye-distance: 31%;
+    $eye-distance: 36%;
 
     &.-left {
       left: $eye-distance;
