@@ -1,33 +1,29 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { createRef } from "preact";
+import { useEffect } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
 
 import style from "./App.scss?inline";
 import GameScreen from "./screens/GameScreen/Index";
 import StartScreen from "./screens/StartScreen/Index";
+import { appDimensions, currentScreen } from "./store";
 
 export const screens = {
-  startScreen: StartScreen,
-  gameScreen: GameScreen
+  start: StartScreen,
+  game: GameScreen
 } as const;
 
-export type Tdimensions = { x: number, y: number };
-
 function App() {
-  const app = useRef<HTMLDivElement>();
-  // const [screen, setScreen] = useState<keyof typeof screens>("startScreen");
-  const [screen, setScreen] = useState<keyof typeof screens>("gameScreen");
+  const app = createRef<HTMLDivElement>();
 
-  const [dimensions, setDimensions] = useState<Tdimensions>();
-
-  const CurrentScreen = screens[screen];
+  const CurrentScreen = screens[currentScreen.value];
 
   useEffect(() => {
     if (!app.current) {
       throw new Error("app.current is undefined");
     }
 
-    setDimensions({ 
+    appDimensions.value = ({ 
       x: app.current.clientWidth + 200,
       y: app.current.clientHeight 
     });
@@ -38,10 +34,7 @@ function App() {
       ref={app}
       class="GameApp"
     >
-      <CurrentScreen
-        setScreen={setScreen}
-        dimensions={dimensions}
-      />
+      <CurrentScreen />
     </div>
   </StylerComponent>;
 }

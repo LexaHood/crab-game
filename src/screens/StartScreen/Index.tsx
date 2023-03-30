@@ -1,12 +1,10 @@
-import type { StateUpdater } from "preact/hooks";
-
-import type { screens } from "@/App";
 import background from "@/assets/background.jpg";
 import StylerComponent from "@/components/StylerComponent";
+import { currentScreen } from "@/store";
 
 import style from "./style.scss?inline";
 
-export default function StartScreen({ setScreen }: { setScreen: StateUpdater<keyof typeof screens> }) {
+export default function StartScreen() {
   return <StylerComponent style={style}>
     <div class="StartScreen">
       <img
@@ -18,7 +16,7 @@ export default function StartScreen({ setScreen }: { setScreen: StateUpdater<key
       </h1>
 
       <button
-        onClick={() => setScreen("gameScreen")}
+        onClick={() => currentScreen.value = "game"}
         class="StartScreen__startButton"
       >
         Начать игру

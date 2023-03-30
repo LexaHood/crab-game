@@ -1,24 +1,23 @@
 import { useEffect, useState } from "preact/hooks";
 
-import type {  Tdimensions } from "@/App";
 import StylerComponent from "@/components/StylerComponent";
+import { appDimensions } from "@/store";
 
 import style from "./fish.scss?inline";
 
-type Tcoords = {x: number, y: number};
-
-// Todo: 
-// - использовать ширину и высоту экрана
-
-export default function Fish({ dimensions }: { dimensions: Tdimensions }) {
+export default function Fish() {
   function getRandomCoords() {
+    if (!appDimensions.value) {
+      throw new Error("Game started, but dimensions undefined");
+    }
+
     return {
-      x: Math.random() * dimensions.x,
-      y: Math.random() * dimensions.y / 2,
+      x: Math.random() * appDimensions.value.x,
+      y: Math.random() * appDimensions.value.y / 2,
     };
   }
 
-  const [coords, setCoords] = useState<Tcoords>(getRandomCoords());
+  const [coords, setCoords] = useState(getRandomCoords());
   const [travelDuration] = useState<number>(4000 + Math.random() * 4000);
 
   useEffect(() => {
