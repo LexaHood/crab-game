@@ -1,18 +1,17 @@
-import type {  Tdimensions } from "@/App";
 import StylerComponent from "@/components/StylerComponent";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
 
-export default function Fishes({ dimensions }: {dimensions: Tdimensions, }) {
+export default function Fishes() {
   const fishTotalAmount = 10;
   const fishes = [];
   for (let i = 0; i < fishTotalAmount; i += 1) {
-    fishes.push(<Fish dimensions={dimensions} />);
+    fishes.push(<Fish />);
   }
 
   return <StylerComponent style={style}>
-    {dimensions && fishes.map((fish) => {
+    {fishes.map((fish) => {
       return fish;
     })}
   </StylerComponent>;
