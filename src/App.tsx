@@ -1,5 +1,4 @@
-import { createRef } from "preact";
-import { useEffect } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
 
@@ -14,7 +13,7 @@ export const screens = {
 } as const;
 
 function App() {
-  const app = createRef<HTMLDivElement>();
+  const app = useRef<HTMLDivElement>(null);
 
   const CurrentScreen = screens[currentScreen.value];
 
