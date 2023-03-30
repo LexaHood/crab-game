@@ -5,6 +5,8 @@ import { appDimensions } from "@/store";
 
 import style from "./fish.scss?inline";
 
+const fishImages = Object.values(import.meta.glob("@/assets/fish_*.svg"));
+
 export default function Fish() {
   function getRandomCoords() {
     if (!appDimensions.value) {
@@ -19,8 +21,16 @@ export default function Fish() {
 
   const [coords, setCoords] = useState(getRandomCoords());
   const [travelDuration] = useState<number>(4000 + Math.random() * 4000);
+  const [fishImage, setFishImage] = useState<string>();
+
+  async function initFishImage() {
+    const randomIndex = Math.floor(Math.random() * fishImages.length);
+    const importResult = await fishImages[randomIndex]() as { default: string };
+    setFishImage(importResult.default);
+  }
 
   useEffect(() => {
+    initFishImage();
     setCoords(getRandomCoords());
 
     setInterval(() => {
@@ -36,7 +46,10 @@ export default function Fish() {
         transition: `transform ${travelDuration}ms ease-in-out`
       }}
     >
-      <div class="Fish__body"></div>
+      <img
+        src={fishImage}
+        class="Fish__body" 
+      />
     </div>
   </StylerComponent>;
 }
