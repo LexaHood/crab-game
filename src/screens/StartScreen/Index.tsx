@@ -1,4 +1,4 @@
-import background from "@/assets/background.jpg";
+import background from "@/assets/background.webp";
 import StylerComponent from "@/components/StylerComponent";
 import { currentScreen } from "@/store";
 
