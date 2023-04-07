@@ -2,6 +2,7 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
+import { claws } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -16,6 +17,12 @@ export default function Fishes() {
 
   function handleClick(event: MouseEvent, itemId: number) {
     console.log(`Clicked item ${itemId}`);
+    claws.value = {
+      ...claws.value,
+      right: {
+        id: itemId,
+      }
+    };
     deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
   }
 

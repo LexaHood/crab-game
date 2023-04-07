@@ -10,14 +10,18 @@ export type TClawsCords = {
 
 export type TClaws = {
   left: {
-    id: number | undefined,
-    clawCords: TClawsCords | undefined
+    id?: number,
+    clawCords?: TClawsCords
   },
   right: {
-    id: number | undefined,
-    clawCords: TClawsCords | undefined
+    id?: number,
+    clawCords?: TClawsCords
   }
 };
 
 export const currentScreen = signal<TScreens>("start");
 export const appDimensions = signal<TDimensions | undefined>(undefined);
+export const claws = signal<TClaws>({
+  left: {},
+  right: {}
+});

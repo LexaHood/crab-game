@@ -4,6 +4,7 @@ import { useMouse } from "react-use";
 import crabLimbs from "@/assets/crab_limbs.svg";
 import crabTorso from "@/assets/crab_torso.svg";
 import StylerComponent from "@/components/StylerComponent";
+import { claws } from "@/store";
 
 import style from "./crab.scss?inline";
 
@@ -18,6 +19,10 @@ export default function Crab() {
   const rightEyeRef = useRef<HTMLDivElement>(null);
 
   const { elX: mouseX, elY: mouseY } = useMouse(eyesRef);
+
+  useEffect(() => {
+    console.log(claws.value);
+  }, [claws.value]);
 
   useEffect(() => {
     setEyeRadius((eyesRef.current as HTMLDivElement).clientWidth / 15);
