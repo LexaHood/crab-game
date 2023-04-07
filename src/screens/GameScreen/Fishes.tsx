@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "preact/hooks";
+
 import StylerComponent from "@/components/StylerComponent";
 
 import Fish from "./Fish";
@@ -5,14 +8,20 @@ import style from "./fishes.scss?inline";
 
 export default function Fishes() {
   const fishTotalAmount = 10;
-  const fishes = [];
-  for (let i = 0; i < fishTotalAmount; i += 1) {
-    fishes.push(<Fish />);
+  const [fishes, deleteFish] = useState(() => {
+    return Array.from({ length: fishTotalAmount }, (_, i) => {
+      return { id: i, name: `Fish_${i}` };
+    });
+  });
+
+  function handleClick(event: MouseEvent, itemId: number) {
+    console.log(`Clicked item ${itemId}`);
+    deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
   }
 
   return <StylerComponent style={style}>
     {fishes.map((fish) => {
-      return fish;
+      return <Fish key={fish.id} name={fish.name} onClick={(event: any) => handleClick(event, fish.id)}/>;
     })}
   </StylerComponent>;
 }

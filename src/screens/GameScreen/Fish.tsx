@@ -7,7 +7,9 @@ import style from "./fish.scss?inline";
 
 const fishImages = Object.values(import.meta.glob("@/assets/fish_*.svg"));
 
-export default function Fish() {
+export default function Fish( props: {
+  key: number, name: string, onClick: (event: MouseEvent, itemId: number) => void
+}) {
   function getRandomCoords() {
     if (!appDimensions.value) {
       throw new Error("Game started, but dimensions undefined");
@@ -45,10 +47,12 @@ export default function Fish() {
         transform: `translate(${coords.x - 100}px, ${coords.y}px)`,
         transition: `transform ${travelDuration}ms ease-in-out`
       }}
+      onClick={(event) => props.onClick(event, props.key)}
     >
+      Fish name: {props.name}
       <img
         src={fishImage}
-        class="Fish__body" 
+        class="Fish__body"
       />
     </div>
   </StylerComponent>;
