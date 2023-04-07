@@ -1,27 +1,18 @@
 import { signal } from "@preact/signals";
 
-export type TDimensions = { x: number, y: number };
+export type TCoords = { x: number, y: number };
 export type TScreens = "start" | "game";
-
-export type TClawsCords = {
-  x: number,
-  y: number
-};
-
 export type TClaws = {
-  left: {
+  left?: {
     id?: number,
-    clawCords?: TClawsCords
+    clawCords: TCoords
   },
-  right: {
+  right?: {
     id?: number,
-    clawCords?: TClawsCords
+    clawCords: TCoords
   }
 };
 
 export const currentScreen = signal<TScreens>("start");
-export const appDimensions = signal<TDimensions | undefined>(undefined);
-export const claws = signal<TClaws>({
-  left: {},
-  right: {}
-});
+export const appDimensions = signal<TCoords | undefined>(undefined);
+export const claws = signal<TClaws>({});

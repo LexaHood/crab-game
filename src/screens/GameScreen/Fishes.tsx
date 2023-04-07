@@ -21,6 +21,11 @@ export default function Fishes() {
       ...claws.value,
       right: {
         id: itemId,
+        // Временные данные!
+        clawCords: {
+          x: 0,
+          y: 0
+        }
       }
     };
     deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
