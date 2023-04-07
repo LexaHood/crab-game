@@ -1,7 +1,7 @@
 import background from "@/assets/background.webp";
 import StylerComponent from "@/components/StylerComponent";
 
-import Crab from "./Crab";
+import Crab from "./Crab/Index";
 import Fishes from "./Fishes";
 import style from "./style.scss?inline";
 import Ui from "./Ui";

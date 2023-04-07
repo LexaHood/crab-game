@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import { useMouse } from "react-use";
 
-import crabLimbs from "@/assets/crab_limbs.svg";
-import crabTorso from "@/assets/crab_torso.svg";
 import StylerComponent from "@/components/StylerComponent";
-import { claws } from "@/store";
 
-import style from "./crab.scss?inline";
+import style from "./crabEyes.scss?inline";
 
-export default function Crab() {
+export default function CrabEyes() {
   const [eyeRadius, setEyeRadius] = useState<number>(0);
   const [eyeOffsetY, setEyeOffsetY] = useState<number>(0);
   const [leftEyeOffsetX, setLeftEyeOffsetX] = useState<number>(0);
@@ -19,10 +16,6 @@ export default function Crab() {
   const rightEyeRef = useRef<HTMLDivElement>(null);
 
   const { elX: mouseX, elY: mouseY } = useMouse(eyesRef);
-
-  useEffect(() => {
-    console.log(claws.value);
-  }, [claws.value]);
 
   useEffect(() => {
     setEyeRadius((eyesRef.current as HTMLDivElement).clientWidth / 15);
@@ -64,39 +57,24 @@ export default function Crab() {
   };
 
   return <StylerComponent style={style}>
-    <div class="Crab">
-      <div class="Crab__body">
-        <img
-          src={crabLimbs}
-          class="Crab__body__limbs"
-        />
-        <div class="Crab__body__torsoRotator">
-          <img
-            src={crabTorso}
-            class="Crab__body__torsoRotator__torso"
-          />
-        </div>
-
-        <div 
-          ref={eyesRef}
-          class="Crab__body__eyes"
-        >
-          <div
-            ref={leftEyeRef}
-            class="Crab__body__eyes__eye -left"
-            style={{
-              transform: `translate(${leftCoords().x}px, ${leftCoords().y}px)`
-            }}
-          />
-          <div
-            ref={rightEyeRef}
-            class="Crab__body__eyes__eye -right"
-            style={{
-              transform: `translate(${rightCoords().x}px, ${rightCoords().y}px)`
-            }}
-          />
-        </div>
-      </div>
+    <div 
+      ref={eyesRef}
+      class="CrabEyes"
+    >
+      <div
+        ref={leftEyeRef}
+        class="CrabEyes__eye -left"
+        style={{
+          transform: `translate(${leftCoords().x}px, ${leftCoords().y}px)`
+        }}
+      />
+      <div
+        ref={rightEyeRef}
+        class="CrabEyes__eye -right"
+        style={{
+          transform: `translate(${rightCoords().x}px, ${rightCoords().y}px)`
+        }}
+      />
     </div>
   </StylerComponent>;
 }

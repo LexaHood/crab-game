@@ -45,31 +45,4 @@
     width: 100%;
     bottom: 0;
   }
-
-  .Crab__body__eyes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .Crab__body__eyes__eye {
-    position: absolute;
-    height: 5%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    background: black;
-    top: 32%;
-
-    $eye-distance: 36%;
-
-    &.-left {
-      left: $eye-distance;
-    }
-
-    &.-right {
-      right: $eye-distance;
-    }
-  }
 }
