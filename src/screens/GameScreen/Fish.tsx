@@ -21,8 +21,15 @@ export default function Fish( props: {
     };
   }
 
+  // TODO: По хорошему константные значения вынести в отдельный конифг
+  function randTime(startTime: number, endTime: number) {
+    const step = 100;
+    return Math.floor(Math.random() * ((endTime - startTime) / step)) * step + startTime;
+  }
+
   const [coords, setCoords] = useState(getRandomCoords());
-  const [travelDuration] = useState<number>(4000 + Math.random() * 4000);
+  // TODO: Закинуть хук на изменение времени анимации после ее конца
+  const [travelDuration] = useState<number>(randTime(2800, 4200));
   const [fishImage, setFishImage] = useState<string>();
 
   async function initFishImage() {
@@ -49,7 +56,8 @@ export default function Fish( props: {
       }}
       onClick={(event) => props.onClick(event, props.key)}
     >
-      Fish name: {props.name}
+      <p style={{ color: "white" }}>Fish name: {props.name}</p>
+      <p style={{ color: "white" }}>TimeSpeed: {travelDuration}</p>
       <img
         src={fishImage}
         class="Fish__body"

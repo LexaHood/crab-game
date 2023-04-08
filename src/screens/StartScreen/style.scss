@@ -29,11 +29,13 @@
   }
 
   .StartScreen__startButton {
-    font-size: 200%;
     padding: 1.1% 4%;
-    border-radius: 6px;
-    color: white;
-    background: var(--clr-primary);
+    // FIXME: Фильтр применяется на области, а не на самой картинке
+    border-radius: 50%;
     width: fit-content;
+
+    &:hover {
+      filter: hue-rotate(30deg);
+    }
   }
 }

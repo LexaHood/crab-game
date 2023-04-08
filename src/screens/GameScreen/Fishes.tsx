@@ -2,7 +2,7 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
-import { claws } from "@/store";
+import { crabClaws, TClaws, TClow } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -16,24 +16,38 @@ export default function Fishes() {
   });
 
   function handleClick(event: MouseEvent, itemId: number) {
-    console.log(`Clicked item ${itemId}`);
-    claws.value = {
-      ...claws.value,
-      right: {
-        id: itemId,
-        // Временные данные!
-        clawCords: {
-          x: 0,
-          y: 0
-        }
+    let newCrabClaws: TClaws = {};
+    const { left, right } = crabClaws.value;
+    const newClaw: TClow = {
+      id: itemId,
+      clawCords: {
+        x: event.clientX,
+        y: event.clientY
       }
     };
-    deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
+
+    if (Object.keys(crabClaws.value).length < 2) {
+      if (!left && !right) {
+        const clawName = Math.random() > 0.5 ? "left" : "right";
+        newCrabClaws[clawName] = newClaw;
+      } else {
+        newCrabClaws = {
+          [left ? "right" : "left"]: newClaw,
+          ...crabClaws.value
+        };
+      }
+
+      // crabClaws.value = newCrabClaws;
+      // deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
+    }
+
+    // TODO: Когда клешни будут возвращаться, убрать эту строчку. пока что, пусть обнуляются
+    crabClaws.value = newCrabClaws;
   }
 
   return <StylerComponent style={style}>
     {fishes.map((fish) => {
-      return <Fish key={fish.id} name={fish.name} onClick={(event: any) => handleClick(event, fish.id)}/>;
+      return <Fish key={fish.id} name={fish.name} onClick={(event: any) => handleClick(event, fish.id)} />;
     })}
   </StylerComponent>;
 }
