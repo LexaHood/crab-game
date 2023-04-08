@@ -46,8 +46,8 @@ export default function Fish( props: {
 
   async function initFishImage() {
     const randomIndex = Math.floor(Math.random() * fishImages.length);
-    const importResult = await fishImages[randomIndex]() as { default: string };
-    setFishImage(importResult.default);
+    const importResult = fishImages[randomIndex];
+    setFishImage(importResult);
   }
 
   useEffect(() => {
