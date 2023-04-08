@@ -1,11 +1,23 @@
 import { useEffect, useState } from "preact/hooks";
 
+import fish1 from "@/assets/fish_1.svg";
+import fish2 from "@/assets/fish_2.svg";
+import fish3 from "@/assets/fish_3.svg";
+import fish4 from "@/assets/fish_4.svg";
+import fish5 from "@/assets/fish_5.svg";
+import fish6 from "@/assets/fish_6.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { appDimensions } from "@/store";
 
 import style from "./fish.scss?inline";
-
-const fishImages = Object.values(import.meta.glob("@/assets/fish_*.svg"));
+const fishImages = [
+  fish1,
+  fish2,
+  fish3,
+  fish4,
+  fish5,
+  fish6
+];
 
 export default function Fish( props: {
   key: number, name: string, onClick: (event: MouseEvent, itemId: number) => void
