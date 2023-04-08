@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn todo-cli && npx release-it --only-version --no-git --ci --i 'minor' && git add package.json TODO.md
