@@ -1,0 +1,46 @@
+$claws-widen: 10%;
+
+.CrabClaws {
+  position: absolute;
+  top: 0;
+  left: -$claws-widen / 2;
+  width: 100% + $claws-widen;
+  height: 100%;
+  transform: translateY(-35%);
+}
+
+.CrabClaws__clawWrapper {
+  position: absolute;
+  left: 0;
+  width: 28%;
+  height: 60%;
+}
+
+.CrabClaws__clawWrapper__claw {
+  width: 100%;
+  height: 100%;
+
+  &.-right {
+    transform: scaleX(-1);
+  }
+}
+
+$claw-spread: 28%;
+
+.CrabClaws__clawWrapper__claw__big {
+  display: block;
+  position: absolute;
+  transform: translate(-$claw-spread);
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+
+.CrabClaws__clawWrapper__claw__small {
+  display: block;
+  position: absolute;
+  transform: translate($claw-spread);
+  width: 75%;
+  height: 75%;
+  bottom: 0;
+}
