@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 
 import crabClawBig from "@/assets/crab_claw_big.svg";
 import crabClawSmall from "@/assets/crab_claw_small.svg";
+import fish1 from "@/assets/fish_1.svg";
 import StylerComponent from "@/components/StylerComponent";
 import type { TCoords } from "@/store";
 import { crabClaws } from "@/store";

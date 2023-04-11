@@ -2,7 +2,7 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
-import { crabClaws, TClaws, TClow } from "@/store";
+import { crabClaws, TClaw, TClaws } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -18,7 +18,7 @@ export default function Fishes() {
   function handleClick(event: MouseEvent, itemId: number) {
     let newCrabClaws: TClaws = {};
     const { left, right } = crabClaws.value;
-    const newClaw: TClow = {
+    const newClaw: TClaw = {
       id: itemId,
       clawCords: {
         x: event.clientX,
