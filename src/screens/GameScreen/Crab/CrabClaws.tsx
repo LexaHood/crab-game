@@ -21,8 +21,10 @@ export default function CrabClaws() {
     }
 
     const leftClawRect = leftClawRef.current.getBoundingClientRect();
+    const rightClawRect = rightClawRef.current.getBoundingClientRect();
 
     setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
+    setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
   }, []);
 
   function leftClawTranslate(): TCoords {
@@ -36,6 +38,20 @@ export default function CrabClaws() {
     return {
       x: crabClaws.value.left.clawCords.x - leftClawOffsets.x,
       y: crabClaws.value.left.clawCords.y - leftClawOffsets.y
+    };
+  }
+
+  function rightClawTranslate(): TCoords {
+    if (!crabClaws.value.right) {
+      return {
+        x: 0,
+        y: 0
+      };
+    }
+
+    return {
+      x: crabClaws.value.right.clawCords.x - rightClawOffsets.x,
+      y: crabClaws.value.right.clawCords.y - rightClawOffsets.y
     };
   }
 
@@ -63,6 +79,9 @@ export default function CrabClaws() {
       <div
         ref={rightClawRef}
         class="CrabClaws__clawWrapper -right"
+        style={{
+          transform: `translate(${rightClawTranslate().x}px, ${rightClawTranslate().y}px)`
+        }}
       >
         <div class="CrabClaws__clawWrapper__claw -right">
           <img

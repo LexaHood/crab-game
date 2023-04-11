@@ -11,8 +11,8 @@ export default function GameScreen() {
     <div class="GameScreen">
       <img class="GameScreen__bg" src={background}/>
       <Ui />
-      <Fishes />
       <Crab />
+      <Fishes />
     </div>
   </StylerComponent>;
 }
