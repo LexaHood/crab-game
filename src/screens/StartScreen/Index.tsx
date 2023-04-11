@@ -9,7 +9,6 @@ import { currentScreen } from "@/store";
 import style from "./style.scss?inline";
 
 export default function StartScreen() {
-
   return <StylerComponent style={style}>
     <div class="StartScreen">
       <img

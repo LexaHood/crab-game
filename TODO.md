@@ -4,7 +4,7 @@
 | [src/screens/GameScreen/Fish.tsx](src/screens/GameScreen/Fish.tsx#L36) | 36 | По хорошему константные значения вынести в отдельный конифг |
 | [src/screens/GameScreen/Fish.tsx](src/screens/GameScreen/Fish.tsx#L43) | 43 | Закинуть хук на изменение времени анимации после ее конца |
 | [src/screens/GameScreen/Fishes.tsx](src/screens/GameScreen/Fishes.tsx#L44) | 44 | Когда клешни будут возвращаться, убрать эту строчку. пока что, пусть обнуляются |
-| [src/screens/StartScreen/Index.tsx](src/screens/StartScreen/Index.tsx#L23) | 23 | Сделать смену картинки на startBtnPushed при наведении мыши |
+| [src/screens/StartScreen/Index.tsx](src/screens/StartScreen/Index.tsx#L22) | 22 | Сделать смену картинки на startBtnPushed при наведении мыши |
 
 ### FIXMEs
 | Filename | line # | FIXME |
