@@ -1,9 +1,11 @@
+import cx from "classnames";
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import crabClawBig from "@/assets/crab_claw_big.svg";
 import crabClawSmall from "@/assets/crab_claw_small.svg";
 import fish1 from "@/assets/fish_1.svg";
 import StylerComponent from "@/components/StylerComponent";
+import { CLAW_TRAVEL_DELAY } from "@/constants";
 import type { TCoords } from "@/store";
 import { crabClaws } from "@/store";
 
@@ -13,8 +15,12 @@ export default function CrabClaws() {
   const leftClawRef = useRef<HTMLDivElement>(null);
   const rightClawRef = useRef<HTMLDivElement>(null);
 
-  const [leftClawOffsets, setLeftClawOffsets] = useState<TCoords>({ x: 0, y: 0  });
-  const [rightClawOffsets, setRightClawOffsets] = useState<TCoords>({ x: 0, y: 0  });
+  const [leftClawOffsets, setLeftClawOffsets] = useState<TCoords>({ x: 0, y: 0 });
+  const [rightClawOffsets, setRightClawOffsets] = useState<TCoords>({ x: 0, y: 0 });
+  const [leftClawMoving, setLeftClawMoving] = useState(false);
+  const [leftClawHasFish, setLeftClawHasFish] = useState(false);
+  const [rightClawMoving, setRightClawMoving] = useState(false);
+  const [rightClawHasFish, setRightClawHasFish] = useState(false);
 
   useEffect(() => {
     if (!leftClawRef.current || !rightClawRef.current) {
@@ -27,6 +33,32 @@ export default function CrabClaws() {
     setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
     setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
   }, []);
+
+  useEffect(() => {
+    if (crabClaws.value.left) {
+      setLeftClawMoving(true);
+
+      setTimeout(() => {
+        setLeftClawMoving(false);
+      }, CLAW_TRAVEL_DELAY * .9);
+      setTimeout(() => {
+        setLeftClawHasFish(true);
+      }, CLAW_TRAVEL_DELAY);
+    }
+  }, [crabClaws.value.left]);
+
+  useEffect(() => {
+    if (crabClaws.value.right) {
+      setRightClawMoving(true);
+
+      setTimeout(() => {
+        setRightClawMoving(false);
+      }, CLAW_TRAVEL_DELAY * .9);
+      setTimeout(() => {
+        setRightClawHasFish(true);
+      }, CLAW_TRAVEL_DELAY);
+    }
+  }, [crabClaws.value.right]);
 
   function leftClawTranslate(): TCoords {
     if (!crabClaws.value.left) {
@@ -67,11 +99,21 @@ export default function CrabClaws() {
       >
         <div class="CrabClaws__clawWrapper__claw -left">
           <img
-            class="CrabClaws__clawWrapper__claw__big"
+            class={cx(
+              "CrabClaws__clawWrapper__claw__big -left",
+              { "-open": leftClawMoving }
+            )}
             src={crabClawBig}
           />
-          <img 
-            class="CrabClaws__clawWrapper__claw__small"
+          {leftClawHasFish && <img
+            src={fish1}
+            class="CrabClaws__clawWrapper__claw__prey"
+          />}
+          <img
+            class={cx(
+              "CrabClaws__clawWrapper__claw__small -left",
+              { "-open": leftClawMoving }
+            )}
             src={crabClawSmall}
           />
         </div>
@@ -81,16 +123,26 @@ export default function CrabClaws() {
         ref={rightClawRef}
         class="CrabClaws__clawWrapper -right"
         style={{
-          transform: `translate(${rightClawTranslate().x}px, ${rightClawTranslate().y}px)`
+          transform: `translate(calc(${rightClawTranslate().x}px + 100%), ${rightClawTranslate().y}px)`
         }}
       >
         <div class="CrabClaws__clawWrapper__claw -right">
           <img
-            class="CrabClaws__clawWrapper__claw__big"
+            class={cx(
+              "CrabClaws__clawWrapper__claw__big -right",
+              { "-open": rightClawMoving }
+            )}
             src={crabClawBig}
           />
+          {rightClawHasFish && <img
+            src={fish1}
+            class="CrabClaws__clawWrapper__claw__prey"
+          />}
           <img 
-            class="CrabClaws__clawWrapper__claw__small"
+            class={cx(
+              "CrabClaws__clawWrapper__claw__small -right",
+              { "-open": rightClawMoving }
+            )}
             src={crabClawSmall}
           />
         </div>

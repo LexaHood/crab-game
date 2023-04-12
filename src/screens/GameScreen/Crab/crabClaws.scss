@@ -13,7 +13,7 @@ $claws-widen: -20%;
   position: absolute;
   width: 28%;
   height: 60%;
-  transition: transform .5s;
+  transition: transform 500ms;
 
   &.-left {
     left: 0;
@@ -25,32 +25,61 @@ $claws-widen: -20%;
 }
 
 .CrabClaws__clawWrapper__claw {
+  position: relative;
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
 
   &.-right {
-    transform: scaleX(-1) translate(-50%, -50%);
+    transform: scaleX(-1) translate(50%, -50%);
   }
 }
 
 $claw-spread: 30%;
+$claw-rotate: 30deg;
 
-.CrabClaws__clawWrapper__claw__big {
-  display: block;
-  position: absolute;
-  transform: translate(-$claw-spread);
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-}
-
+.CrabClaws__clawWrapper__claw__big,
 .CrabClaws__clawWrapper__claw__small {
   display: block;
   position: absolute;
+  bottom: 0;
+  transform-origin: center 75%;
+  transition: transform .1s;
+}
+
+.CrabClaws__clawWrapper__claw__big {
+  transform: translate(-$claw-spread);
+  width: 100%;
+  height: 100%;
+
+  &.-left {
+    &.-open {
+      transform: translate(-$claw-spread) rotate(-$claw-rotate);
+    }
+  }
+
+  &.-right {
+    &.-open {
+      transform: translate(-$claw-spread) rotate(-$claw-rotate);
+    }
+  }
+}
+
+.CrabClaws__clawWrapper__claw__small {
   transform: translate($claw-spread);
   width: 90%;
-  bottom: 0;
+
+  &.-left {
+    &.-open {
+      transform: translate($claw-spread) rotate($claw-rotate);
+    }
+  }
+
+  &.-right {
+    &.-open {
+      transform: translate($claw-spread) rotate($claw-rotate);
+    }
+  }
 }
 
 .CrabClaws__clawWrapper__claw__prey {
