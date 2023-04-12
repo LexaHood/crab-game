@@ -33,6 +33,7 @@
     // FIXME: Фильтр применяется на области, а не на самой картинке
     border-radius: 50%;
     width: fit-content;
+    height: 40%;
 
     &:hover {
       filter: hue-rotate(30deg);
