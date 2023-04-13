@@ -8,7 +8,7 @@ import Fish from "./Fish";
 import style from "./fishes.scss?inline";
 
 export default function Fishes() {
-  const fishTotalAmount = 5;
+  const fishTotalAmount = 1;
   const [fishes, deleteFish] = useState(() => {
     return Array.from({ length: fishTotalAmount }, (_, i) => {
       return { id: i, name: `Fish_${i}` };
@@ -38,12 +38,12 @@ export default function Fishes() {
         };
       }
 
-      // crabClaws.value = newCrabClaws;
+      crabClaws.value = newCrabClaws;
       // deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
     }
 
     // TODO: Когда клешни будут возвращаться, убрать эту строчку. пока что, пусть обнуляются
-    crabClaws.value = newCrabClaws;
+    // crabClaws.value = newCrabClaws;
   }
 
   return <StylerComponent style={style}>

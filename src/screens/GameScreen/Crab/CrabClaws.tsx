@@ -107,7 +107,7 @@ export default function CrabClaws() {
         ref={leftClawRef}
         class="CrabClaws__clawWrapper -left"
         style={{
-          transform: `translate(${leftClawTranslate().x}px, ${leftClawTranslate().y}px)`
+          transform: `translate(${leftClawTranslate().x}px, calc(${leftClawTranslate().y}px - 15%))`
         }}
       >
         <div class="CrabClaws__clawWrapper__claw -left">
@@ -136,7 +136,7 @@ export default function CrabClaws() {
         ref={rightClawRef}
         class="CrabClaws__clawWrapper -right"
         style={{
-          transform: `translate(calc(${rightClawTranslate().x}px + 100%), ${rightClawTranslate().y}px)`
+          transform: `translate(calc(${rightClawTranslate().x}px + 100%), calc(${rightClawTranslate().y}px - 15%))`
         }}
       >
         <div class="CrabClaws__clawWrapper__claw -right">

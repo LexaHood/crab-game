@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import fish1 from "@/assets/fish_1.svg";
@@ -8,7 +9,7 @@ import fish5 from "@/assets/fish_5.svg";
 import fish6 from "@/assets/fish_6.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
-import { appDimensions, TCoords } from "@/store";
+import { appDimensions } from "@/store";
 
 import style from "./fish.scss?inline";
 const fishImages = [
@@ -49,6 +50,7 @@ export default function Fish( props: {
   const [fishImage, setFishImage] = useState<string>();
   const [timerId, setTimerId] = useState<number | NodeJS.Timer | undefined >();
   const [fishIsDead, setFishIsDead] = useState<boolean>(false);
+  const [movingLeft, setMovingLeft] = useState<boolean>(false);
 
   async function initFishImage() {
     const randomIndex = Math.floor(Math.random() * fishImages.length);
@@ -61,7 +63,13 @@ export default function Fish( props: {
     setCoords(getRandomCoords());
 
     setTimerId(setInterval(() => {
-      setCoords(getRandomCoords());
+      const newCoords = getRandomCoords();
+      console.log(newCoords.x, coords.x);
+      
+      setCoords((prevCords) => {
+        setMovingLeft(newCoords.x < prevCords.x);
+        return newCoords;
+      });
     }, travelDuration));
   }, []);
 
@@ -89,7 +97,10 @@ export default function Fish( props: {
     >
       <img
         src={fishImage}
-        class="Fish__body"
+        class={cx(
+          "Fish__body",
+          { "-movingLeft": movingLeft }
+        )}
       />
     </div>
   </StylerComponent>;
