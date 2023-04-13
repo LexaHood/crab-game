@@ -4,7 +4,8 @@ export type TCoords = { x: number, y: number };
 export type TScreens = "start" | "game";
 export type TClaw = {
   id?: number,
-  clawCords: TCoords
+  clawCords: TCoords,
+  fishImage?: string
 };
 export type TClaws = {
   left?: TClaw,

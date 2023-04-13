@@ -21,7 +21,9 @@ const fishImages = [
 ];
 
 export default function Fish( props: {
-  key: number, name: string, onClick: (event: MouseEvent, itemId: number) => void
+  key: number, 
+  name: string, 
+  onFishClick: (event: MouseEvent, itemId: number, fishImage: string) => void
 }) {
   function getRandomCoords() {
     if (!appDimensions.value) {
@@ -82,7 +84,7 @@ export default function Fish( props: {
 
         setCoords({ x: thisFishRef.x - (appDimensions.value as DOMRect).x, y: thisFishRef.y -  (appDimensions.value as DOMRect).y });
 
-        return props.onClick(event, props.key);
+        return props.onFishClick(event, props.key, fishImage as string);
       }}
     >
       <img

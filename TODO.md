@@ -2,9 +2,9 @@
 | Filename | line # | TODO |
 |:------|:------:|:------|
 | [src/App.tsx](src/App.tsx#L25) | 25 | Обновлять на каждый скрол |
-| [src/screens/GameScreen/Fish.tsx](src/screens/GameScreen/Fish.tsx#L37) | 37 | По хорошему константные значения вынести в отдельный конифг |
-| [src/screens/GameScreen/Fish.tsx](src/screens/GameScreen/Fish.tsx#L45) | 45 | Закинуть хук на изменение времени анимации после ее конца |
-| [src/screens/GameScreen/Fishes.tsx](src/screens/GameScreen/Fishes.tsx#L44) | 44 | Когда клешни будут возвращаться, убрать эту строчку. пока что, пусть обнуляются |
+| [src/screens/GameScreen/Fish.tsx](src/screens/GameScreen/Fish.tsx#L39) | 39 | По хорошему константные значения вынести в отдельный конифг |
+| [src/screens/GameScreen/Fish.tsx](src/screens/GameScreen/Fish.tsx#L47) | 47 | Закинуть хук на изменение времени анимации после ее конца |
+| [src/screens/GameScreen/Fishes.tsx](src/screens/GameScreen/Fishes.tsx#L45) | 45 | Когда клешни будут возвращаться, убрать эту строчку. пока что, пусть обнуляются |
 | [src/screens/StartScreen/Index.tsx](src/screens/StartScreen/Index.tsx#L22) | 22 | Сделать смену картинки на startBtnPushed при наведении мыши |
 
 ### FIXMEs

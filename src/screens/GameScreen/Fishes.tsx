@@ -15,7 +15,7 @@ export default function Fishes() {
     });
   });
 
-  function handleClick(event: MouseEvent, itemId: number) {
+  function handleClick(event: MouseEvent, itemId: number, fishImage: string) {
     let newCrabClaws: TClaws = {};
     const { left, right } = crabClaws.value;
     const newClaw: TClaw = {
@@ -23,7 +23,8 @@ export default function Fishes() {
       clawCords: {
         x: event.clientX,
         y: event.clientY
-      }
+      },
+      fishImage
     };
 
     if (Object.keys(crabClaws.value).length < 2) {
@@ -47,7 +48,11 @@ export default function Fishes() {
 
   return <StylerComponent style={style}>
     {fishes.map((fish) => {
-      return <Fish key={fish.id} name={fish.name} onClick={(event: any) => handleClick(event, fish.id)} />;
+      return <Fish 
+        key={fish.id} 
+        name={fish.name} 
+        onFishClick={handleClick} 
+      />;
     })}
   </StylerComponent>;
 }

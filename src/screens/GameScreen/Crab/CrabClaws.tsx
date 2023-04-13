@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "preact/hooks";
 
 import crabClawBig from "@/assets/crab_claw_big.svg";
 import crabClawSmall from "@/assets/crab_claw_small.svg";
-import fish1 from "@/assets/fish_1.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
 import type { TCoords } from "@/store";
@@ -44,6 +43,13 @@ export default function CrabClaws() {
       setTimeout(() => {
         setLeftClawHasFish(true);
       }, CLAW_TRAVEL_DELAY);
+
+      setTimeout(() => {
+        crabClaws.value = {
+          ...crabClaws.value,
+          left: undefined
+        };
+      }, CLAW_TRAVEL_DELAY * 2);
     }
   }, [crabClaws.value.left]);
 
@@ -57,6 +63,13 @@ export default function CrabClaws() {
       setTimeout(() => {
         setRightClawHasFish(true);
       }, CLAW_TRAVEL_DELAY);
+
+      setTimeout(() => {
+        crabClaws.value = {
+          ...crabClaws.value,
+          right: undefined
+        };
+      }, CLAW_TRAVEL_DELAY * 2);
     }
   }, [crabClaws.value.right]);
 
@@ -106,7 +119,7 @@ export default function CrabClaws() {
             src={crabClawBig}
           />
           {leftClawHasFish && <img
-            src={fish1}
+            src={crabClaws.value.left?.fishImage}
             class="CrabClaws__clawWrapper__claw__prey"
           />}
           <img
@@ -135,7 +148,7 @@ export default function CrabClaws() {
             src={crabClawBig}
           />
           {rightClawHasFish && <img
-            src={fish1}
+            src={crabClaws.value.right?.fishImage}
             class="CrabClaws__clawWrapper__claw__prey"
           />}
           <img 
