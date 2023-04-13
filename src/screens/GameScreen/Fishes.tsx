@@ -27,23 +27,21 @@ export default function Fishes() {
       fishImage
     };
 
-    if (Object.keys(crabClaws.value).length < 2) {
-      if (!left && !right) {
-        const clawName = Math.random() > 0.5 ? "left" : "right";
-        newCrabClaws[clawName] = newClaw;
-      } else {
-        newCrabClaws = {
-          [left ? "right" : "left"]: newClaw,
-          ...crabClaws.value
-        };
-      }
-
-      crabClaws.value = newCrabClaws;
-      // deleteFish(prevFishes => prevFishes.filter(fish => fish.id !== itemId));
+    if (left && right) {
+      return;
     }
 
-    // TODO: Когда клешни будут возвращаться, убрать эту строчку. пока что, пусть обнуляются
-    // crabClaws.value = newCrabClaws;
+    if (!left && !right) {
+      const clawName = Math.random() > 0.5 ? "left" : "right";
+      newCrabClaws[clawName] = newClaw;
+    } else {
+      newCrabClaws = {
+        [left ? "right" : "left"]: newClaw,
+        ...crabClaws.value
+      };
+    }
+
+    crabClaws.value = newCrabClaws;
   }
 
   return <StylerComponent style={style}>

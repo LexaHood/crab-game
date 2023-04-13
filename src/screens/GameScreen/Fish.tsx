@@ -9,7 +9,7 @@ import fish5 from "@/assets/fish_5.svg";
 import fish6 from "@/assets/fish_6.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
-import { appDimensions } from "@/store";
+import { appDimensions, crabClaws } from "@/store";
 
 import style from "./fish.scss?inline";
 const fishImages = [
@@ -51,6 +51,7 @@ export default function Fish( props: {
   const [timerId, setTimerId] = useState<number | NodeJS.Timer | undefined >();
   const [fishIsDead, setFishIsDead] = useState<boolean>(false);
   const [movingLeft, setMovingLeft] = useState<boolean>(false);
+  const [fishOccupied, setFishOccupied] = useState(false);
 
   async function initFishImage() {
     const randomIndex = Math.floor(Math.random() * fishImages.length);
@@ -68,7 +69,7 @@ export default function Fish( props: {
 
   useEffect(() => {
     initFishImage();
-    
+
     updateCoords();
     setTimerId(setInterval(() => {
       updateCoords();
@@ -85,6 +86,15 @@ export default function Fish( props: {
         display: fishIsDead ? "none" : "block"
       }}
       onClick={(event) => {
+        if (fishOccupied) {
+          return;
+        }
+
+        if (crabClaws.value.left && crabClaws.value.right) {
+          return;
+        }
+
+        setFishOccupied(true);
         setTimeout(() => setFishIsDead(true), CLAW_TRAVEL_DELAY);
         clearInterval(timerId);
         if (!fishRef.current) {

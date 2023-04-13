@@ -21,10 +21,6 @@ export default function Crab() {
   const { elX: mouseX, elY: mouseY } = useMouse(eyesRef);
 
   useEffect(() => {
-    console.log(crabClaws.value);
-  }, [crabClaws.value]);
-
-  useEffect(() => {
     setEyeRadius((eyesRef.current as HTMLDivElement).clientWidth / 15);
     setEyeOffsetY((leftEyeRef.current as HTMLDivElement).offsetTop);
     setLeftEyeOffsetX((leftEyeRef.current as HTMLDivElement).offsetLeft);
