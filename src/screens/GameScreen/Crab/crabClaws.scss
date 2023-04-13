@@ -2,7 +2,7 @@ $claws-widen: -20%;
 
 .CrabClaws {
   position: absolute;
-  top: 0;
+  top: 10%;
   left: - calc($claws-widen / 2);
   width: calc(100% + $claws-widen);
   height: 100%;

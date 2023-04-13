@@ -4,14 +4,34 @@
   width: auto;
 }
 
-.Fish__body {
-  transform: translate(-50%, -50%);
+.Fish__flipper {
   height: 100%;
   width: auto;
-  max-width: 100%;
-  transition: transform .2s;
+  position: relative;
+  transition: transform .3s;
+  transform: translate(-50%);
 
   &.-movingLeft {
-    transform: translate(-50%, -50%) scaleX(-1);
+    transform: translate(-50%) scaleX(-1);
+  }
+}
+
+.Fish__body {
+  height: 100%;
+  width: auto;
+  transition: transform .2s;
+  animation-name: bob;
+  animation-duration: 1s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bob {
+  from {
+    transform: translateY(-40%) scaleY(1.05);
+  }
+
+  to {
+    transform: translateY(-60%) scaleY(.95);
   }
 }

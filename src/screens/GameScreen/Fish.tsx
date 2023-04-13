@@ -107,13 +107,18 @@ export default function Fish( props: {
         return props.onFishClick(event, props.key, fishImage as string);
       }}
     >
-      <img
-        src={fishImage}
-        class={cx(
-          "Fish__body",
-          { "-movingLeft": movingLeft }
-        )}
-      />
+      <div class={cx(
+        "Fish__flipper",
+        { "-movingLeft": movingLeft }
+      )}>
+        <img
+          src={fishImage}
+          class="Fish__body"
+          style={{
+            animationDelay: `-${props.key * .375}s`
+          }}
+        />
+      </div>
     </div>
   </StylerComponent>;
 }
