@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 import fish1 from "@/assets/fish_1.svg";
 import fish2 from "@/assets/fish_2.svg";
@@ -7,7 +7,8 @@ import fish4 from "@/assets/fish_4.svg";
 import fish5 from "@/assets/fish_5.svg";
 import fish6 from "@/assets/fish_6.svg";
 import StylerComponent from "@/components/StylerComponent";
-import { appDimensions } from "@/store";
+import { CLAW_TRAVEL_DELAY } from "@/constants";
+import { appDimensions, TCoords } from "@/store";
 
 import style from "./fish.scss?inline";
 const fishImages = [
@@ -28,8 +29,8 @@ export default function Fish( props: {
     }
 
     return {
-      x: Math.random() * appDimensions.value.x,
-      y: Math.random() * appDimensions.value.y / 2,
+      x: Math.random() * appDimensions.value.width,
+      y: Math.random() * appDimensions.value.height / 2,
     };
   }
 
@@ -39,10 +40,13 @@ export default function Fish( props: {
     return Math.floor(Math.random() * ((endTime - startTime) / step)) * step + startTime;
   }
 
+  const fishRef = useRef<HTMLDivElement>(null);
   const [coords, setCoords] = useState(getRandomCoords());
   // TODO: Закинуть хук на изменение времени анимации после ее конца
   const [travelDuration] = useState<number>(randTime(2800, 4200));
   const [fishImage, setFishImage] = useState<string>();
+  const [timerId, setTimerId] = useState<number | NodeJS.Timer | undefined >();
+  const [fishIsDead, setFishIsDead] = useState<boolean>(false);
 
   async function initFishImage() {
     const randomIndex = Math.floor(Math.random() * fishImages.length);
@@ -54,22 +58,33 @@ export default function Fish( props: {
     initFishImage();
     setCoords(getRandomCoords());
 
-    setInterval(() => {
+    setTimerId(setInterval(() => {
       setCoords(getRandomCoords());
-    }, travelDuration);
+    }, travelDuration));
   }, []);
 
   return <StylerComponent style={style}>
     <div
+      ref={fishRef}
       class="Fish"
       style={{
-        transform: `translate(${coords.x - 100}px, ${coords.y}px)`,
-        transition: `transform ${travelDuration}ms ease-in-out`
+        transform: `translate(${coords.x}px, ${coords.y}px)`,
+        transition: `transform ${travelDuration}ms ease-in-out`,
+        display: fishIsDead ? "none" : "block"
       }}
-      onClick={(event) => props.onClick(event, props.key)}
+      onClick={(event) => {
+        setTimeout(() => setFishIsDead(true), CLAW_TRAVEL_DELAY);
+        clearInterval(timerId);
+        if (!fishRef.current) {
+          throw new Error("fish not created");
+        }
+        const thisFishRef = fishRef.current.getBoundingClientRect();
+
+        setCoords({ x: thisFishRef.x - (appDimensions.value as DOMRect).x, y: thisFishRef.y -  (appDimensions.value as DOMRect).y });
+
+        return props.onClick(event, props.key);
+      }}
     >
-      <p style={{ color: "white" }}>Fish name: {props.name}</p>
-      <p style={{ color: "white" }}>TimeSpeed: {travelDuration}</p>
       <img
         src={fishImage}
         class="Fish__body"

@@ -22,10 +22,8 @@ function App() {
       throw new Error("app.current is undefined");
     }
 
-    appDimensions.value = ({ 
-      x: app.current.clientWidth + 200,
-      y: app.current.clientHeight 
-    });
+    // TODO: Обновлять на каждый скрол
+    appDimensions.value = app.current.getBoundingClientRect();
   }, []);
 
   return <StylerComponent style={style}>

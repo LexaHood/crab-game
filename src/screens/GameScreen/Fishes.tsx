@@ -8,7 +8,7 @@ import Fish from "./Fish";
 import style from "./fishes.scss?inline";
 
 export default function Fishes() {
-  const fishTotalAmount = 10;
+  const fishTotalAmount = 5;
   const [fishes, deleteFish] = useState(() => {
     return Array.from({ length: fishTotalAmount }, (_, i) => {
       return { id: i, name: `Fish_${i}` };

@@ -1,10 +1,12 @@
-.Fish img {
+.Fish {
   position: absolute;
-  height: 16vh;
+  height: 8%;
   width: auto;
-  max-width: 16%;
 }
 
 .Fish__body {
   transform: translate(-50%, -50%);
+  height: 100%;
+  width: auto;
+  max-width: 100%;
 }
