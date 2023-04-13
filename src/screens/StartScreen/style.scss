@@ -20,23 +20,17 @@
     filter: hue-rotate(45deg) brightness(0.5);
   }
 
-  .StartScreen__title {
-    font-size: 400%;
-    margin: 0;
-    color: white;
-    text-transform: uppercase;
-    filter: drop-shadow(2px 4px 6px black);
-  }
+  // .StartScreen__title {
+  //   font-size: 400%;
+  //   margin: 0;
+  //   color: white;
+  //   text-transform: uppercase;
+  //   filter: drop-shadow(2px 4px 6px black);
+  // }
 
   .StartScreen__startButton {
     padding: 1.1% 4%;
-    // FIXME: Фильтр применяется на области, а не на самой картинке
-    border-radius: 50%;
     width: fit-content;
     height: 40%;
-
-    &:hover {
-      filter: hue-rotate(30deg);
-    }
   }
 }

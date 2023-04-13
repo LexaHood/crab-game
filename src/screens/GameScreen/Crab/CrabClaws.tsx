@@ -49,6 +49,7 @@ export default function CrabClaws() {
           ...crabClaws.value,
           left: undefined
         };
+        setLeftClawHasFish(false);
       }, CLAW_TRAVEL_DELAY * 2);
     }
   }, [crabClaws.value.left]);
@@ -69,6 +70,7 @@ export default function CrabClaws() {
           ...crabClaws.value,
           right: undefined
         };
+        setRightClawHasFish(false);
       }, CLAW_TRAVEL_DELAY * 2);
     }
   }, [crabClaws.value.right]);

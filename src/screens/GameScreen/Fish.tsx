@@ -58,18 +58,20 @@ export default function Fish( props: {
     setFishImage(importResult);
   }
 
+  function updateCoords() {
+    const newCoords = getRandomCoords();
+    setCoords((prevCords) => {
+      setMovingLeft(newCoords.x < prevCords.x);
+      return newCoords;
+    });
+  }
+
   useEffect(() => {
     initFishImage();
-    setCoords(getRandomCoords());
-
+    
+    updateCoords();
     setTimerId(setInterval(() => {
-      const newCoords = getRandomCoords();
-      console.log(newCoords.x, coords.x);
-      
-      setCoords((prevCords) => {
-        setMovingLeft(newCoords.x < prevCords.x);
-        return newCoords;
-      });
+      updateCoords();
     }, travelDuration));
   }, []);
 
