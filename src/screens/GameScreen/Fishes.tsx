@@ -2,7 +2,7 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
-import { crabClaws, currentScreen, score, TClaw, TClaws } from "@/store";
+import { crabClaws, TClaw, TClaws } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -10,7 +10,7 @@ import style from "./fishes.scss?inline";
 export default function Fishes() {
   const fishTotalAmount = 15;
   const [fishes] = useState(() => {
-    return Array.from({ length: fishTotalAmount }, (_, i) => {
+    return Array.from({ length: fishTotalAmount + 1 }, (_, i) => {
       return { id: i };
     });
   });

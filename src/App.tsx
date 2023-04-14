@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
 
@@ -15,6 +15,7 @@ export const screens = {
 } as const;
 
 function App() {
+  const [pressedKeys, setPressedKeys] = useState<string[]>([]);
   const app = useRef<HTMLDivElement>(null);
   
   const CurrentScreen = screens[currentScreen.value];
@@ -31,6 +32,25 @@ function App() {
       appDimensions.value = (app.current as HTMLDivElement).getBoundingClientRect();
     });
   }, []);
+
+  useEffect(() => {
+    document.addEventListener("keyup", onKeyUp);
+    return () => document.removeEventListener("keyup", onKeyUp);
+  }, []);
+
+  function onKeyUp(event: KeyboardEvent) {
+    setPressedKeys((prev) => {
+      const result = prev.concat([event.key]);
+      const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+      if (JSON.stringify(result.slice(-10)) === JSON.stringify(konamiCode)) {
+        console.log("%cПоздравляем, вы обнаружили контакты разработчиков!", "font-size: 20px");
+        console.log("%c- https://kopyl.dev", "font-size: 16px");
+        console.log("%c- allpetr@list.ru", "font-size: 16px");
+      }
+
+      return result;
+    });
+  }
 
   return <StylerComponent style={style}>
     <div

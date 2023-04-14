@@ -20,8 +20,7 @@ export const misses = signal<number>(0);
 
 export function manageGameplay() {
   score.value++;
-  // TODO: Поменять 1 на 15
-  if (score.value >= 1) {
+  if (score.value >= 15) {
     currentScreen.value = "win";
   }
 }

@@ -4,7 +4,6 @@ import { useMouse } from "react-use";
 import crabLimbs from "@/assets/crab_limbs.svg";
 import crabTorso from "@/assets/crab_torso.svg";
 import StylerComponent from "@/components/StylerComponent";
-import { crabClaws } from "@/store";
 
 import style from "./crab.scss?inline";
 
