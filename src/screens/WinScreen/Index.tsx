@@ -1,5 +1,3 @@
-import { useState } from "preact/hooks";
-
 import background from "@/assets/background.webp";
 import counter from "@/assets/counter.svg";
 import recept_photo from "@/assets/recept_photo.png";
@@ -19,14 +17,25 @@ export default function WinScreen() {
       />
       <div class="ShopElement">
         <p class="Score">
-          {score}x
-          <img
-            src={counter}
-          />
-          =
+          <div class="Score__counter">
+            {score}x
+            <img
+              src={counter}
+            />
+            =
+          </div>
           <div class="Recept">
-            <a class="Btn" href="https://freefrontend.com/css-buttons/">Смотреть рецепт</a>
-            <img src={recept_photo}/>
+            <a 
+              class="Recept__btn" 
+              href="https://freefrontend.com/css-buttons/"
+              target="_blank"
+            >
+              Смотреть рецепт
+            </a>
+            <img 
+              class="Recept__image" 
+              src={recept_photo}
+            />
           </div>
         </p>
         <img

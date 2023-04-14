@@ -20,6 +20,7 @@ module.exports = {
     "simple-import-sort/exports": "error",
     "react/no-unknown-property": ["error", { ignore: ["class"] }],
     "react/react-in-jsx-scope": 0,
+    "react/jsx-no-target-blank": 0,
     "space-before-function-paren": ["error", {
       "anonymous": "always",
       "named": "never",

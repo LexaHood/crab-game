@@ -53,12 +53,20 @@
   .Score {
     display: flex;
     gap: 16px;
-    align-items: center;
+    justify-content: center;
+    align-items: end;
     color: #fff;
     font-size: 30px;
   }
 
+  .Score__counter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   .Recept {
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -66,7 +74,7 @@
     gap: 10px;
   }
 
-  .Btn {
+  .Recept__btn {
     background-color: #f87b43;
     width: 240px;
     border: 100% 150px;
@@ -76,6 +84,11 @@
     height: auto;
     padding: 4px;
     color: white;
+  }
+
+  .Recept__image {
+    width: 100%;
+    height: auto;
   }
 
   @media screen and (max-width:720px) {

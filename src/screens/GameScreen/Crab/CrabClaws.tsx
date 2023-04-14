@@ -21,6 +21,14 @@ export default function CrabClaws() {
   const [rightClawMoving, setRightClawMoving] = useState(false);
   const [rightClawHasFish, setRightClawHasFish] = useState(false);
 
+  function onScroll() {
+    const leftClawRect = (leftClawRef.current as HTMLDivElement).getBoundingClientRect();
+    const rightClawRect = (rightClawRef.current as HTMLDivElement).getBoundingClientRect();
+
+    setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
+    setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
+  }
+
   useEffect(() => {
     if (!leftClawRef.current || !rightClawRef.current) {
       throw new Error("Claws not present");
@@ -32,13 +40,8 @@ export default function CrabClaws() {
     setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
     setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
 
-    window.addEventListener("scroll", () => {
-      const leftClawRect = (leftClawRef.current as HTMLDivElement).getBoundingClientRect();
-      const rightClawRect = (rightClawRef.current as HTMLDivElement).getBoundingClientRect();
-
-      setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
-      setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
-    });
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
