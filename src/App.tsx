@@ -5,16 +5,18 @@ import StylerComponent from "@/components/StylerComponent";
 import style from "./App.scss?inline";
 import GameScreen from "./screens/GameScreen/Index";
 import StartScreen from "./screens/StartScreen/Index";
+import WinScreen from "./screens/WinScreen/Index";
 import { appDimensions, currentScreen } from "./store";
 
 export const screens = {
   start: StartScreen,
-  game: GameScreen
+  game: GameScreen,
+  win: WinScreen,
 } as const;
 
 function App() {
   const app = useRef<HTMLDivElement>(null);
-
+  
   const CurrentScreen = screens[currentScreen.value];
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function App() {
   }, []);
 
   return <StylerComponent style={style}>
-    <div 
+    <div
       ref={app}
       class="GameApp"
     >

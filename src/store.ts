@@ -1,7 +1,7 @@
 import { signal } from "@preact/signals";
 
 export type TCoords = { x: number, y: number };
-export type TScreens = "start" | "game";
+export type TScreens = "start" | "game" | "win";
 export type TClaw = {
   id?: number,
   clawCords: TCoords,

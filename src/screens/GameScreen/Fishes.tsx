@@ -2,7 +2,7 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
-import { crabClaws, TClaw, TClaws } from "@/store";
+import { crabClaws, currentScreen, score, TClaw, TClaws } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -46,10 +46,10 @@ export default function Fishes() {
 
   return <StylerComponent style={style}>
     {fishes.map((fish) => {
-      return <Fish 
+      return <Fish
         key={fish.id}
-        fishId={fish.id} 
-        onFishClick={handleClick} 
+        fishId={fish.id}
+        onFishClick={handleClick}
       />;
     })}
   </StylerComponent>;
