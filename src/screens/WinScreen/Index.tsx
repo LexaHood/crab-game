@@ -1,15 +1,15 @@
 import { useState } from "preact/hooks";
 
 import background from "@/assets/background.webp";
-import start_button from "@/assets/start_button.png";
-import start_button_pushed from "@/assets/start_button_pushed.png";
+import counter from "@/assets/counter.svg";
+import recept_photo from "@/assets/recept_photo.png";
+import shop from "@/assets/shop.png";
 import StylerComponent from "@/components/StylerComponent";
-import { currentScreen } from "@/store";
+import { score } from "@/store";
 
 import style from "./style.scss?inline";
 
 export default function WinScreen() {
-  const [startButtonImage, setStartButtonImage] = useState(start_button);
 
   return <StylerComponent style={style}>
     <div class="StartScreen">
@@ -17,14 +17,23 @@ export default function WinScreen() {
         class="StartScreen__bg"
         src={background}
       />
-
-      <img
-        src={startButtonImage}
-        class="StartScreen__startButton"
-        onClick={() => currentScreen.value = "game"}
-        onMouseEnter={() => setStartButtonImage(start_button_pushed)}
-        onMouseLeave={() => setStartButtonImage(start_button)}
-      />
+      <div class="ShopElement">
+        <p class="Score">
+          {score}x
+          <img
+            src={counter}
+          />
+          =
+          <div class="Recept">
+            <a class="Btn" href="https://freefrontend.com/css-buttons/">Смотреть рецепт</a>
+            <img src={recept_photo}/>
+          </div>
+        </p>
+        <img
+          src={shop}
+          class="Shop"
+        />
+      </div>
     </div>
   </StylerComponent>;
 }

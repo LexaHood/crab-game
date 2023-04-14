@@ -17,3 +17,10 @@ export const appDimensions = signal<DOMRect | undefined>(undefined);
 export const crabClaws = signal<TClaws>({});
 export const score = signal<number>(0);
 export const misses = signal<number>(0);
+
+export function manageGameplay() {
+  score.value++;
+  if (score.value >= 1) {
+    currentScreen.value = "win";
+  }
+}
