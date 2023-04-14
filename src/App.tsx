@@ -23,7 +23,11 @@ function App() {
     }
 
     // TODO: Обновлять на каждый скрол
+    
     appDimensions.value = app.current.getBoundingClientRect();
+    window.addEventListener("scroll", () => {
+      appDimensions.value = (app.current as HTMLDivElement).getBoundingClientRect();
+    });
   }, []);
 
   return <StylerComponent style={style}>

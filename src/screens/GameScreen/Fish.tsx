@@ -75,6 +75,28 @@ export default function Fish( props: {
     }, travelDuration));
   }, []);
 
+  function onFishClick(event: MouseEvent) {
+    if (fishOccupied) {
+      return;
+    }
+
+    if (crabClaws.value.left && crabClaws.value.right) {
+      return;
+    }
+
+    setFishOccupied(true);
+    setTimeout(() => setFishIsDead(true), CLAW_TRAVEL_DELAY);
+    clearInterval(timerId);
+    if (!fishRef.current) {
+      throw new Error("fish not created");
+    }
+    const thisFishRef = fishRef.current.getBoundingClientRect();
+
+    setCoords({ x: thisFishRef.x - (appDimensions.value as DOMRect).x, y: thisFishRef.y -  (appDimensions.value as DOMRect).y });
+
+    return props.onFishClick(event, props.fishId, fishImage as string);
+  }
+
   return <StylerComponent style={style}>
     <div
       ref={fishRef}
@@ -84,27 +106,7 @@ export default function Fish( props: {
         transition: `transform ${travelDuration}ms ease-in-out`,
         display: fishIsDead ? "none" : "block"
       }}
-      onClick={(event) => {
-        if (fishOccupied) {
-          return;
-        }
-
-        if (crabClaws.value.left && crabClaws.value.right) {
-          return;
-        }
-
-        setFishOccupied(true);
-        setTimeout(() => setFishIsDead(true), CLAW_TRAVEL_DELAY);
-        clearInterval(timerId);
-        if (!fishRef.current) {
-          throw new Error("fish not created");
-        }
-        const thisFishRef = fishRef.current.getBoundingClientRect();
-
-        setCoords({ x: thisFishRef.x - (appDimensions.value as DOMRect).x, y: thisFishRef.y -  (appDimensions.value as DOMRect).y });
-
-        return props.onFishClick(event, props.fishId, fishImage as string);
-      }}
+      onClick={onFishClick}
     >
       <div class={cx(
         "Fish__flipper",

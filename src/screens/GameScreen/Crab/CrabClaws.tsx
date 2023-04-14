@@ -31,6 +31,14 @@ export default function CrabClaws() {
 
     setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
     setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
+
+    window.addEventListener("scroll", () => {
+      const leftClawRect = (leftClawRef.current as HTMLDivElement).getBoundingClientRect();
+      const rightClawRect = (rightClawRef.current as HTMLDivElement).getBoundingClientRect();
+
+      setLeftClawOffsets({ x: leftClawRect.x, y: leftClawRect.y });
+      setRightClawOffsets({ x: rightClawRect.x, y: rightClawRect.y });
+    });
   }, []);
 
   useEffect(() => {
