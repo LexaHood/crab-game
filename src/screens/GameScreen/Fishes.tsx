@@ -11,7 +11,7 @@ export default function Fishes() {
   const fishTotalAmount = 15;
   const [fishes] = useState(() => {
     return Array.from({ length: fishTotalAmount }, (_, i) => {
-      return { id: i, name: `Fish_${i}` };
+      return { id: i };
     });
   });
 
@@ -47,8 +47,8 @@ export default function Fishes() {
   return <StylerComponent style={style}>
     {fishes.map((fish) => {
       return <Fish 
-        key={fish.id} 
-        name={fish.name} 
+        key={fish.id}
+        fishId={fish.id} 
         onFishClick={handleClick} 
       />;
     })}

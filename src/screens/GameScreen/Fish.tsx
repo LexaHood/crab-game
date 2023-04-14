@@ -22,8 +22,7 @@ const fishImages = [
 ];
 
 export default function Fish( props: {
-  key: number, 
-  name: string, 
+  fishId: number, 
   onFishClick: (event: MouseEvent, itemId: number, fishImage: string) => void
 }) {
   function getRandomCoords() {
@@ -104,7 +103,7 @@ export default function Fish( props: {
 
         setCoords({ x: thisFishRef.x - (appDimensions.value as DOMRect).x, y: thisFishRef.y -  (appDimensions.value as DOMRect).y });
 
-        return props.onFishClick(event, props.key, fishImage as string);
+        return props.onFishClick(event, props.fishId, fishImage as string);
       }}
     >
       <div class={cx(
@@ -115,7 +114,8 @@ export default function Fish( props: {
           src={fishImage}
           class="Fish__body"
           style={{
-            animationDelay: `-${props.key * .375}s`
+            animationDelay: `-${props.fishId * .2}s`,
+            animationDuration: `${1 + props.fishId * .2}s`
           }}
         />
       </div>

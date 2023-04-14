@@ -21,17 +21,16 @@
   width: auto;
   transition: transform .2s;
   animation-name: bob;
-  animation-duration: 1s;
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
 }
 
 @keyframes bob {
   from {
-    transform: translateY(-40%) scaleY(1.05);
+    transform: translateY(-40%) scaleY(1.05) scaleX(.95);
   }
 
   to {
-    transform: translateY(-60%) scaleY(.95);
+    transform: translateY(-60%) scaleY(.95) scaleX(1.05);
   }
 }
