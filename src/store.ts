@@ -3,7 +3,6 @@ import { signal } from "@preact/signals";
 export type TCoords = { x: number, y: number };
 export type TScreens = "start" | "game" | "win";
 export type TClaw = {
-  id?: number,
   clawCords: TCoords,
   fishImage?: string
 };
@@ -18,9 +17,3 @@ export const crabClaws = signal<TClaws>({});
 export const score = signal<number>(0);
 export const misses = signal<number>(0);
 
-export function manageGameplay() {
-  score.value++;
-  if (score.value >= 15) {
-    currentScreen.value = "win";
-  }
-}

@@ -1,5 +1,6 @@
+import { batch, useSignal } from "@preact/signals";
 import cx from "classnames";
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useLayoutEffect, useRef, useState } from "preact/hooks";
 
 import fish1 from "@/assets/fish_1.svg";
 import fish2 from "@/assets/fish_2.svg";
@@ -9,7 +10,7 @@ import fish5 from "@/assets/fish_5.svg";
 import fish6 from "@/assets/fish_6.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
-import { appDimensions, crabClaws } from "@/store";
+import { appDimensions, crabClaws, score, TClaw, TClaws, TCoords } from "@/store";
 
 import style from "./fish.scss?inline";
 const fishImages = [
@@ -21,80 +22,130 @@ const fishImages = [
   fish6
 ];
 
-export default function Fish( props: {
-  fishId: number, 
-  onFishClick: (event: MouseEvent, itemId: number, fishImage: string) => void
-}) {
-  function getRandomCoords() {
+export default function Fish(props: {fishId: number}) {
+  const fishRef = useRef<HTMLDivElement>(null);
+
+  const [fishImage, setFishImage] = useState<string>();
+  const [fishOccupied, setFishOccupied] = useState(false);
+
+  const movingLeft = useSignal<boolean>(Math.random() > .5);
+  const coords = useSignal<TCoords>(getStartCoords(movingLeft.value));
+  const travelDuration = useSignal<number>(randTime());
+  const shouldSetDestination = useSignal(false);
+  const endOfScreenTimer = useSignal<NodeJS.Timeout | null>(null);
+
+  function getStartCoords(movingLeft: boolean): TCoords {
     if (!appDimensions.value) {
       throw new Error("Game started, but dimensions undefined");
     }
 
     return {
-      x: Math.random() * appDimensions.value.width,
+      x: appDimensions.value.width * (movingLeft ? 1 : 0),
       y: Math.random() * appDimensions.value.height / 2,
     };
   }
 
   // TODO: По хорошему константные значения вынести в отдельный конифг
-  function randTime(startTime: number, endTime: number) {
+  function randTime() {
+    const startTime = 2800;
+    const endTime = 4200;
     const step = 100;
     return Math.floor(Math.random() * ((endTime - startTime) / step)) * step + startTime;
   }
 
-  const fishRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState(getRandomCoords());
-  // TODO: Закинуть хук на изменение времени анимации после ее конца
-  const [travelDuration] = useState<number>(randTime(2800, 4200));
-  const [fishImage, setFishImage] = useState<string>();
-  const [timerId, setTimerId] = useState<number | NodeJS.Timer | undefined >();
-  const [fishIsDead, setFishIsDead] = useState<boolean>(false);
-  const [movingLeft, setMovingLeft] = useState<boolean>(false);
-  const [fishOccupied, setFishOccupied] = useState(false);
-
-  async function initFishImage() {
+  function initFishImage() {
     const randomIndex = Math.floor(Math.random() * fishImages.length);
     const importResult = fishImages[randomIndex];
     setFishImage(importResult);
   }
 
-  function updateCoords() {
-    const newCoords = getRandomCoords();
-    setCoords((prevCords) => {
-      setMovingLeft(newCoords.x < prevCords.x);
-      return newCoords;
-    });
+  function respawnFish() {
+    setFishOccupied(false);
+    initFishImage();
+    movingLeft.value = !movingLeft.value;
+    
+    // Teleport fish to random side
+    travelDuration.value = 0;
+    coords.value = getStartCoords(movingLeft.value);
+    shouldSetDestination.value = true;
   }
 
+  // Set actual target
   useEffect(() => {
-    initFishImage();
+    if (!shouldSetDestination.value) {
+      return;
+    }
+    
+    shouldSetDestination.value = false;
 
-    updateCoords();
-    setTimerId(setInterval(() => {
-      updateCoords();
-    }, travelDuration));
+    travelDuration.value = randTime();
+    coords.value = {
+      x: (appDimensions.value as DOMRect).width * (movingLeft.value ? 0 : 1),
+      y: coords.value.y
+    };
+  
+    endOfScreenTimer.value = setTimeout(() => {
+      respawnFish();
+    }, travelDuration.value);
+  }, [shouldSetDestination.value]);
+
+  useEffect(() => {
+    respawnFish();
   }, []);
 
   function onFishClick(event: MouseEvent) {
+    if (!fishRef.current) {
+      throw new Error("fish not created");
+    }
+
+    // Fish already being grabbed
     if (fishOccupied) {
       return;
     }
 
+    // Both claws busy, can't grab
     if (crabClaws.value.left && crabClaws.value.right) {
       return;
     }
 
     setFishOccupied(true);
-    setTimeout(() => setFishIsDead(true), CLAW_TRAVEL_DELAY);
-    clearInterval(timerId);
-    if (!fishRef.current) {
-      throw new Error("fish not created");
-    }
+    if (endOfScreenTimer.value) clearTimeout(endOfScreenTimer.value);
+    setTimeout(respawnFish, CLAW_TRAVEL_DELAY);
     const thisFishRef = fishRef.current.getBoundingClientRect();
 
-    setCoords({ x: thisFishRef.x - (appDimensions.value as DOMRect).x, y: thisFishRef.y -  (appDimensions.value as DOMRect).y });
+    coords.value = { 
+      x: thisFishRef.x - (appDimensions.value as DOMRect).x, 
+      y: thisFishRef.y -  (appDimensions.value as DOMRect).y 
+    };
 
-    return props.onFishClick(event, props.fishId, fishImage as string);
+    score.value += 1;
+
+    // Populate claws
+    let newCrabClaws: TClaws = {};
+    const { left, right } = crabClaws.value;
+    const newClaw: TClaw = {
+      clawCords: {
+        x: event.clientX,
+        y: event.clientY
+      },
+      fishImage
+    };
+
+    if (left && right) {
+      return;
+    }
+
+    if (!left && !right) {
+      const clawName = Math.random() > 0.5 ? "left" : "right";
+      newCrabClaws[clawName] = newClaw;
+    } else {
+      newCrabClaws = {
+        ...crabClaws.value,
+        [left ? "right" : "left"]: newClaw
+      };
+    }
+
+    crabClaws.value = newCrabClaws;
   }
 
   return <StylerComponent style={style}>
@@ -102,15 +153,13 @@ export default function Fish( props: {
       ref={fishRef}
       class="Fish"
       style={{
-        transform: `translate(${coords.x}px, ${coords.y}px)`,
-        transition: `transform ${travelDuration}ms ease-in-out`,
-        display: fishIsDead ? "none" : "block"
+        transform: `translate(${coords.value.x}px, ${coords.value.y}px)`,
+        transition: `transform ${travelDuration.value}ms linear`,
       }}
-      onClick={onFishClick}
     >
       <div class={cx(
         "Fish__flipper",
-        { "-movingLeft": movingLeft }
+        { "-movingLeft": movingLeft.value }
       )}>
         <img
           src={fishImage}
@@ -119,6 +168,7 @@ export default function Fish( props: {
             animationDelay: `-${props.fishId * .2}s`,
             animationDuration: `${1 + props.fishId * .2}s`
           }}
+          onClick={onFishClick}
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ import crabClawBig from "@/assets/crab_claw_big.svg";
 import crabClawSmall from "@/assets/crab_claw_small.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
-import { manageGameplay, TCoords } from "@/store";
+import { TCoords } from "@/store";
 import { crabClaws } from "@/store";
 
 import style from "./crabClaws.scss?inline";
@@ -61,7 +61,6 @@ export default function CrabClaws() {
           left: undefined
         };
         setLeftClawHasFish(false);
-        manageGameplay();
       }, CLAW_TRAVEL_DELAY * 2);
     }
   }, [crabClaws.value.left]);
@@ -82,7 +81,6 @@ export default function CrabClaws() {
           ...crabClaws.value,
           right: undefined
         };
-        manageGameplay();
         setRightClawHasFish(false);
       }, CLAW_TRAVEL_DELAY * 2);
     }
