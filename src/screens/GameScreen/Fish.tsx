@@ -1,6 +1,6 @@
-import { batch, useSignal } from "@preact/signals";
+import { useSignal } from "@preact/signals";
 import cx from "classnames";
-import { useEffect, useLayoutEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 import fish1 from "@/assets/fish_1.svg";
 import fish2 from "@/assets/fish_2.svg";
@@ -39,9 +39,24 @@ export default function Fish(props: {fishId: number}) {
       throw new Error("Game started, but dimensions undefined");
     }
 
+    const widen = appDimensions.value.width * (Math.random() + .1);
+
     return {
-      x: appDimensions.value.width * (movingLeft ? 1 : 0),
+      x: movingLeft ? appDimensions.value.width + widen : -widen,
       y: Math.random() * appDimensions.value.height / 2,
+    };
+  }
+
+  function getEndCoords(movingLeft: boolean): TCoords {
+    if (!appDimensions.value) {
+      throw new Error("Game started, but dimensions undefined");
+    }
+
+    const widen = appDimensions.value.width * (Math.random() + .1);
+
+    return {
+      x: movingLeft ? -widen : appDimensions.value.width + widen,
+      y: coords.value.y,
     };
   }
 
@@ -79,10 +94,7 @@ export default function Fish(props: {fishId: number}) {
     shouldSetDestination.value = false;
 
     travelDuration.value = randTime();
-    coords.value = {
-      x: (appDimensions.value as DOMRect).width * (movingLeft.value ? 0 : 1),
-      y: coords.value.y
-    };
+    coords.value = getEndCoords(movingLeft.value);
   
     endOfScreenTimer.value = setTimeout(() => {
       respawnFish();
