@@ -1,3 +1,4 @@
+import { useSignal } from "@preact/signals";
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
@@ -14,6 +15,7 @@ export default function Fishes() {
       return { id: i };
     });
   });
+  const nextLeft = useSignal(Math.random() > 0.5);
 
   function handleMiss(event: MouseEvent) {
     misses.value += 1;
@@ -38,7 +40,7 @@ export default function Fishes() {
     }
 
     if (!left && !right) {
-      const clawName = Math.random() > 0.5 ? "left" : "right";
+      const clawName = nextLeft.value ? "left" : "right";
       newCrabClaws[clawName] = newClaw;
     } else {
       newCrabClaws = {
@@ -47,6 +49,7 @@ export default function Fishes() {
       };
     }
 
+    nextLeft.value = !nextLeft.value;
     crabClaws.value = newCrabClaws;
   }
 
