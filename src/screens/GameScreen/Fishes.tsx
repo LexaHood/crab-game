@@ -1,7 +1,8 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
-import { misses } from "@/store";
+import type { TClaw, TClaws } from "@/store";
+import { crabClaws, misses } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -14,8 +15,39 @@ export default function Fishes() {
     });
   });
 
-  function handleMiss() {
+  function handleMiss(event: MouseEvent) {
     misses.value += 1;
+
+    sendClaw(event);
+  }
+
+  function sendClaw(event: MouseEvent, fishImage?: string) {
+    // Populate claws
+    let newCrabClaws: TClaws = {};
+    const { left, right } = crabClaws.value;
+    const newClaw: TClaw = {
+      clawCords: {
+        x: event.clientX,
+        y: event.clientY
+      },
+      fishImage
+    };
+
+    if (left && right) {
+      return;
+    }
+
+    if (!left && !right) {
+      const clawName = Math.random() > 0.5 ? "left" : "right";
+      newCrabClaws[clawName] = newClaw;
+    } else {
+      newCrabClaws = {
+        ...crabClaws.value,
+        [left ? "right" : "left"]: newClaw
+      };
+    }
+
+    crabClaws.value = newCrabClaws;
   }
 
   return <StylerComponent style={style}>
@@ -27,6 +59,7 @@ export default function Fishes() {
         return <Fish
           key={fish.id}
           fishId={fish.id}
+          sendClaw={sendClaw}
         />;
       })}
     </div>

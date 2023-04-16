@@ -10,7 +10,7 @@ import fish5 from "@/assets/fish_5.svg";
 import fish6 from "@/assets/fish_6.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
-import { appDimensions, crabClaws, score, TClaw, TClaws, TCoords } from "@/store";
+import { appDimensions, crabClaws, score, TCoords } from "@/store";
 
 import style from "./fish.scss?inline";
 const fishImages = [
@@ -22,7 +22,10 @@ const fishImages = [
   fish6
 ];
 
-export default function Fish(props: {fishId: number}) {
+export default function Fish(props: {
+  fishId: number,
+  sendClaw: (event: MouseEvent, fishImage?: string) => void
+}) {
   const fishRef = useRef<HTMLDivElement>(null);
 
   const [fishImage, setFishImage] = useState<string>();
@@ -133,32 +136,7 @@ export default function Fish(props: {fishId: number}) {
 
     score.value += 1;
 
-    // Populate claws
-    let newCrabClaws: TClaws = {};
-    const { left, right } = crabClaws.value;
-    const newClaw: TClaw = {
-      clawCords: {
-        x: event.clientX,
-        y: event.clientY
-      },
-      fishImage
-    };
-
-    if (left && right) {
-      return;
-    }
-
-    if (!left && !right) {
-      const clawName = Math.random() > 0.5 ? "left" : "right";
-      newCrabClaws[clawName] = newClaw;
-    } else {
-      newCrabClaws = {
-        ...crabClaws.value,
-        [left ? "right" : "left"]: newClaw
-      };
-    }
-
-    crabClaws.value = newCrabClaws;
+    props.sendClaw(event, fishImage);
   }
 
   return <StylerComponent style={style}>
