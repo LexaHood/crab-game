@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
+import { misses } from "@/store";
 
 import Fish from "./Fish";
 import style from "./fishes.scss?inline";
@@ -14,12 +14,21 @@ export default function Fishes() {
     });
   });
 
+  function handleMiss() {
+    misses.value += 1;
+  }
+
   return <StylerComponent style={style}>
-    {fishes.map((fish) => {
-      return <Fish
-        key={fish.id}
-        fishId={fish.id}
-      />;
-    })}
+    <div 
+      class="Fishes"
+      onClick={handleMiss}
+    >
+      {fishes.map((fish) => {
+        return <Fish
+          key={fish.id}
+          fishId={fish.id}
+        />;
+      })}
+    </div>
   </StylerComponent>;
 }

@@ -39,7 +39,7 @@ export default function Fish(props: {fishId: number}) {
       throw new Error("Game started, but dimensions undefined");
     }
 
-    const widen = appDimensions.value.width * (Math.random() + .1);
+    const widen = appDimensions.value.width + appDimensions.value.width * (Math.random() + .1);
 
     return {
       x: movingLeft ? appDimensions.value.width + widen : -widen,
@@ -48,11 +48,11 @@ export default function Fish(props: {fishId: number}) {
   }
 
   function getEndCoords(movingLeft: boolean): TCoords {
-    if (!appDimensions.value) {
+    if (!appDimensions.value || !fishRef.current) {
       throw new Error("Game started, but dimensions undefined");
     }
 
-    const widen = appDimensions.value.width * (Math.random() + .1);
+    const widen = fishRef.current.getBoundingClientRect().width;
 
     return {
       x: movingLeft ? -widen : appDimensions.value.width + widen,
@@ -62,10 +62,9 @@ export default function Fish(props: {fishId: number}) {
 
   // TODO: По хорошему константные значения вынести в отдельный конифг
   function randTime() {
-    const startTime = 2800;
-    const endTime = 4200;
-    const step = 100;
-    return Math.floor(Math.random() * ((endTime - startTime) / step)) * step + startTime;
+    const startTime = 5000;
+    const endTime = 7000;
+    return Math.random() * (endTime - startTime) + startTime;
   }
 
   function initFishImage() {
@@ -106,6 +105,8 @@ export default function Fish(props: {fishId: number}) {
   }, []);
 
   function onFishClick(event: MouseEvent) {
+    event.stopPropagation();
+
     if (!fishRef.current) {
       throw new Error("fish not created");
     }
