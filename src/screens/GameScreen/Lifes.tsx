@@ -1,6 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
+import { misses, totalHealth } from "@/store";
 
 import Hp from "./Hp";
 import style from "./lifes.scss?inline";
@@ -9,15 +10,16 @@ export default function Lifes() {
   const [health, setHealth] = useState<number[]>([]);
 
   function spawnLife() {
-    console.log(health);
-
     setTimeout(() => {
+      if (totalHealth - misses.value < 4) {
+        setHealth((last) => {
+          return last.concat([last.length]);
+        });
+      }
+
       spawnLife();
     }, getRandomTime());
 
-    setHealth((last) => {
-      return last.concat([last.length]);
-    });
   }
 
   function getRandomTime() {

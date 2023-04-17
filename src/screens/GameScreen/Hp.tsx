@@ -56,6 +56,7 @@ export default function Hp() {
     if (crabClaws.value.left && crabClaws.value.right) {
       return;
     }
+
     setHpOccupied(true);
 
     const thisHpRef = hpRef.current.getBoundingClientRect();
