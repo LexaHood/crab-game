@@ -3,7 +3,7 @@ import counter from "@/assets/counter.svg";
 import recept_photo from "@/assets/recept_photo.png";
 import shop from "@/assets/shop.png";
 import StylerComponent from "@/components/StylerComponent";
-import { currentScreen, score } from "@/store";
+import { crabClaws, currentScreen, misses, score } from "@/store";
 
 import style from "./style.scss?inline";
 
@@ -46,7 +46,12 @@ export default function WinScreen() {
           class="Recept__btn"
           // TODO: мб сделать утилитарный класс для всяких марджинов?
           style="margin: 30px "
-          onClick={() => currentScreen.value = "game"}
+          onClick={ () => {
+            score.value = 0;
+            misses.value = 0;
+            crabClaws.value = {};
+            currentScreen.value = "game";
+          } }
         >Начать заново</button>
       </div>
     </div>
