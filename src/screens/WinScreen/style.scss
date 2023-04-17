@@ -84,6 +84,11 @@
     height: auto;
     padding: 4px;
     color: white;
+    transition: background-color 0.5s ease;
+  }
+
+  .Recept__btn:hover {
+    background-color: #d51910;
   }
 
   .Recept__image {

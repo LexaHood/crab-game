@@ -3,7 +3,7 @@ import counter from "@/assets/counter.svg";
 import recept_photo from "@/assets/recept_photo.png";
 import shop from "@/assets/shop.png";
 import StylerComponent from "@/components/StylerComponent";
-import { score } from "@/store";
+import { currentScreen, score } from "@/store";
 
 import style from "./style.scss?inline";
 
@@ -25,15 +25,15 @@ export default function WinScreen() {
             =
           </div>
           <div class="Recept">
-            <a 
-              class="Recept__btn" 
-              href="https://freefrontend.com/css-buttons/"
+            <a
+              class="Recept__btn"
+              href="https://putina.org/"
               target="_blank"
             >
               Смотреть рецепт
             </a>
-            <img 
-              class="Recept__image" 
+            <img
+              class="Recept__image"
               src={recept_photo}
             />
           </div>
@@ -42,6 +42,12 @@ export default function WinScreen() {
           src={shop}
           class="Shop"
         />
+        <button
+          class="Recept__btn"
+          // TODO: мб сделать утилитарный класс для всяких марджинов?
+          style="margin: 30px "
+          onClick={() => currentScreen.value = "game"}
+        >Начать заново</button>
       </div>
     </div>
   </StylerComponent>;
