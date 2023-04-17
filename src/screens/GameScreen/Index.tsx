@@ -1,12 +1,10 @@
-import { useEffect, useState } from "preact/hooks";
-
 import background from "@/assets/background.webp";
 import StylerComponent from "@/components/StylerComponent";
 import { currentScreen, misses, totalHealth } from "@/store";
 
 import Crab from "./Crab/Index";
 import Fishes from "./Fishes";
-import Healths from "./Healths";
+import Lifes from "./Lifes";
 import style from "./style.scss?inline";
 import Ui from "./Ui";
 
@@ -20,9 +18,9 @@ export default function GameScreen() {
     <div class="GameScreen">
       <img class="GameScreen__bg" src={background}/>
       <Ui />
+      <Lifes />
       <Crab />
       <Fishes />
-      <Healths />
     </div>
   </StylerComponent>;
 }

@@ -1,0 +1,25 @@
+.Hp {
+  position: absolute;
+  transform: translate(0, 0);
+  pointer-events: initial;
+}
+
+.Hp__body {
+  height: 100%;
+  width: auto;
+  animation-name: bob__horizontal;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bob__horizontal {
+  from {
+    transform: translateX(50%) scaleX(1.05) scaleY(.95);
+  }
+
+  to {
+    transform: translateX(-50%) scaleX(.95) scaleY(1.05);
+  }
+}
+
+

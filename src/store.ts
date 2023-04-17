@@ -16,5 +16,6 @@ export const appDimensions = signal<DOMRect | undefined>(undefined);
 export const crabClaws = signal<TClaws>({});
 export const score = signal<number>(0);
 export const misses = signal<number>(0);
+export const nextLeft = signal(Math.random() > 0.5);
 
 export const totalHealth = 3;

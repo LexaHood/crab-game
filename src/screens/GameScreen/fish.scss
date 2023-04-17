@@ -26,10 +26,10 @@
 
 @keyframes bob {
   from {
-    transform: translateY(-40%) scaleY(1.05) scaleX(.95);
+    transform: translateY(0) scaleY(1.05) scaleX(.95);
   }
 
   to {
-    transform: translateY(-60%) scaleY(.95) scaleX(1.05);
+    transform: translateY(-100%) scaleY(.95) scaleX(1.05);
   }
 }

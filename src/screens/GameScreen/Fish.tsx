@@ -159,7 +159,7 @@ export default function Fish(props: {
             animationDelay: `-${props.fishId * .2}s`,
             animationDuration: `${1 + props.fishId * .2}s`
           }}
-          onClick={onFishClick}
+          onMouseDown={onFishClick}
         />
       </div>
     </div>
