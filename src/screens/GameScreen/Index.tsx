@@ -6,6 +6,7 @@ import { currentScreen, misses, totalHealth } from "@/store";
 
 import Crab from "./Crab/Index";
 import Fishes from "./Fishes";
+import Healths from "./Healths";
 import style from "./style.scss?inline";
 import Ui from "./Ui";
 
@@ -21,6 +22,7 @@ export default function GameScreen() {
       <Ui />
       <Crab />
       <Fishes />
+      <Healths />
     </div>
   </StylerComponent>;
 }
