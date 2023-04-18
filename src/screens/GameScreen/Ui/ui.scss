@@ -5,40 +5,41 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
 
-.Score {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  color: #fff;
-  font-size: 30px;
-  margin: 30px;
-}
-
-.Health {
-  position: absolute;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  width: 5.3%;
-  padding-right: 2.5%;
-}
-
-.Heart {
-  padding-top: 50%;
-}
-
-@media screen and (max-width:720px) {
   .Score {
-    font-size: 15px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 30px;
+    margin: 3%;
+    gap: 5%;
   }
 
   .Claw {
-    width: 100%;
-    height: auto;
+    width: 50%;
+  }
+  
+  .Health {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    width: 5.3%;
+    padding-right: 2.5%;
+  }
+  
+  .Heart {
+    padding-top: 50%;
+  }
+}
+
+@media screen and (max-width:720px) {
+  .Ui {
+    .Score {
+      font-size: 15px;
+    }
   }
 }

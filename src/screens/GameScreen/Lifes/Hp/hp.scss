@@ -1,12 +1,11 @@
 .Hp {
   position: absolute;
-  transform: translate(0, 0);
   pointer-events: initial;
+  width: 10%;
 }
 
 .Hp__body {
-  height: 100%;
-  width: auto;
+  width: 100%;
   animation-name: bob__horizontal;
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;

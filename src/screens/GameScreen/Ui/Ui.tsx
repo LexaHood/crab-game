@@ -9,7 +9,8 @@ export default function Ui() {
   return <StylerComponent style={style}>
     <div class="Ui" >
       <p class="Score">
-        {score}x
+        <span>{score}</span>
+        x
         <img
           class="Claw"
           src={counter}
