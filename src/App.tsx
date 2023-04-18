@@ -17,7 +17,7 @@ export const screens = {
 function App() {
   const [pressedKeys, setPressedKeys] = useState<string[]>([]);
   const app = useRef<HTMLDivElement>(null);
-  
+
   const CurrentScreen = screens[currentScreen.value];
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function App() {
     }
 
     // TODO: Обновлять на каждый скрол
-    
+
     appDimensions.value = app.current.getBoundingClientRect();
     window.addEventListener("scroll", () => {
       appDimensions.value = (app.current as HTMLDivElement).getBoundingClientRect();

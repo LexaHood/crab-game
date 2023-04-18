@@ -3,10 +3,10 @@ import StylerComponent from "@/components/StylerComponent";
 import { currentScreen, misses, totalHealth } from "@/store";
 
 import Crab from "./Crab/Index";
-import Fishes from "./Fishes";
-import Lifes from "./Lifes";
+import Fishes from "./Fishes/Fishes";
+import Lifes from "./Lifes/Lifes";
 import style from "./style.scss?inline";
-import Ui from "./Ui";
+import Ui from "./Ui/Ui";
 
 export default function GameScreen() {
   misses.subscribe((value) => {
@@ -16,7 +16,7 @@ export default function GameScreen() {
 
   return <StylerComponent style={style}>
     <div class="GameScreen">
-      <img class="GameScreen__bg" src={background}/>
+      <img class="GameScreen__bg" src={background} />
       <Ui />
       <Lifes />
       <Crab />

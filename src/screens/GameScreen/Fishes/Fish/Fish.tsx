@@ -80,7 +80,7 @@ export default function Fish(props: {
     setFishOccupied(false);
     initFishImage();
     movingLeft.value = !movingLeft.value;
-    
+
     // Teleport fish to random side
     travelDuration.value = 0;
     coords.value = getStartCoords(movingLeft.value);
@@ -92,12 +92,12 @@ export default function Fish(props: {
     if (!shouldSetDestination.value) {
       return;
     }
-    
+
     shouldSetDestination.value = false;
 
     travelDuration.value = randTime();
     coords.value = getEndCoords(movingLeft.value);
-  
+
     endOfScreenTimer.value = setTimeout(() => {
       respawnFish();
     }, travelDuration.value);
@@ -129,9 +129,9 @@ export default function Fish(props: {
     setTimeout(respawnFish, CLAW_TRAVEL_DELAY);
     const thisFishRef = fishRef.current.getBoundingClientRect();
 
-    coords.value = { 
-      x: thisFishRef.x - (appDimensions.value as DOMRect).x, 
-      y: thisFishRef.y -  (appDimensions.value as DOMRect).y 
+    coords.value = {
+      x: thisFishRef.x - (appDimensions.value as DOMRect).x,
+      y: thisFishRef.y - (appDimensions.value as DOMRect).y
     };
 
     score.value += 1;

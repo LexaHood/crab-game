@@ -1,7 +1,7 @@
 import counter from "@/assets/counter.svg";
 import heart from "@/assets/heart.svg";
 import StylerComponent from "@/components/StylerComponent";
-import { misses, score, totalHealth  } from "@/store";
+import { misses, score, totalHealth } from "@/store";
 
 import style from "./ui.scss?inline";
 
@@ -14,12 +14,12 @@ export default function Ui() {
           class="Claw"
           src={counter}
         />
-      </p> 
+      </p>
       {/* TODO: Надо выровнять сердечки в правом верхнем углу */}
       <div class="Health">
-        { Array.from({ length: totalHealth - misses.value }, (_, i) => {
-          return <img class="Heart" key={i} src={heart}/>;
-        }) }
+        {Array.from({ length: totalHealth - misses.value }, (_, i) => {
+          return <img class="Heart" key={i} src={heart} />;
+        })}
       </div>
     </div>
   </StylerComponent>;

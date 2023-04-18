@@ -3,23 +3,23 @@ import { useEffect, useState } from "preact/hooks";
 import StylerComponent from "@/components/StylerComponent";
 import { misses, totalHealth } from "@/store";
 
-import Hp from "./Hp";
+import Hp from "./Hp/Hp";
 import style from "./lifes.scss?inline";
 
 export default function Lifes() {
   const [health, setHealth] = useState<number[]>([]);
 
   function spawnLife() {
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       if (totalHealth - misses.value < 4) {
         setHealth((last) => {
           return last.concat([last.length]);
         });
       }
-
       spawnLife();
     }, getRandomTime());
 
+    return timerId;
   }
 
   function getRandomTime() {
@@ -27,13 +27,15 @@ export default function Lifes() {
   }
 
   useEffect(() => {
-    spawnLife();
+    const timerId = spawnLife();
+
+    return () => clearTimeout(timerId);
   }, []);
 
   return <StylerComponent style={style}>
     <div class="Healths">
-      {health.map((lifeId) => {
-        return <Hp key={lifeId}/>;
+      {health.map((life, Id) => {
+        return <Hp key={Id} />;
       })}
     </div>
   </StylerComponent>;

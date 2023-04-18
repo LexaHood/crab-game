@@ -1,10 +1,10 @@
 import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
+import { sendClaw } from "@/screens/GameScreen/Crab/Index";
 import { misses } from "@/store";
 
-import { sendClaw } from "./Crab/Index";
-import Fish from "./Fish";
+import Fish from "./Fish/Fish";
 import style from "./fishes.scss?inline";
 
 export default function Fishes() {
