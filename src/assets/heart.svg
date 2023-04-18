@@ -1,36 +1,27 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 36" width="44" height="36">
-	<title>heart-svg</title>
-	<defs>
-		<filter x="-50%" y="-50%" width="200%" height="200%" id="f1"> <feGaussianBlur stdDeviation="44"/> </filter>
-		<linearGradient id="g1" x1="42.1" y1="3.2" x2="12.8" y2="30.1" gradientUnits="userSpaceOnUse">
-			<stop offset="0" stop-color="#f26dff"/>
-			<stop offset="1" stop-color="#ff027a"/>
-		</linearGradient>
-		<linearGradient id="g2" x1="42" y1="3.2" x2="12.8" y2="30.1" gradientUnits="userSpaceOnUse">
-			<stop offset="0" stop-color="#f26dff"/>
-			<stop offset="1" stop-color="#ff027a"/>
-		</linearGradient>
-		<linearGradient id="g3" x1="21.4" y1="36.5" x2="29.4" y2="1.3" gradientUnits="userSpaceOnUse">
-			<stop offset="0" stop-color="#ffffff" stop-opacity=".2"/>
-			<stop offset="1" stop-color="#ffffff" stop-opacity=".49"/>
-		</linearGradient>
-		<linearGradient id="g4" x1="-1.7" y1="13" x2="33.4" y2="6.1" gradientUnits="userSpaceOnUse">
-			<stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
-			<stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
-		</linearGradient>
-	</defs>
-	<style>
-		.s0 { filter: url(#f1);fill: url(#g1) } 
-		.s1 { fill: url(#g2) } 
-		.s2 { fill: url(#g3) } 
-		.s3 { fill: none;stroke: url(#g4);stroke-width: 2 } 
-	</style>
-	<g id="Layer">
-		<path id="Layer" class="s0" d="m40.4 3.5c4.7 4.7 4.7 12.3 0 17l-13.5 13.6c-2.7 2.7-7.1 2.7-9.9 0l-12.1-12.1 18.5-18.5c4.7-4.7 12.3-4.7 17 0z"/>
-	</g>
-	<path id="Layer" class="s1" d="m40.4 3.5c4.7 4.7 4.7 12.3 0 17l-13.5 13.6c-2.7 2.7-7.1 2.7-9.9 0l-12.1-12.1 18.5-18.5c4.7-4.7 12.3-4.7 17 0z"/>
-	<g id="Layer">
-		<path id="Layer" class="s2" d="m3.5 3.5c4.7-4.7 12.3-4.7 17 0l18.5 18.5-12.1 12.1c-2.7 2.7-7.1 2.7-9.9 0l-13.5-13.6c-4.7-4.7-4.7-12.3 0-17z"/>
-		<path id="Layer" class="s3" d="m4.2 4.2c4.3-4.3 11.3-4.3 15.6 0l17.8 17.8-11.4 11.4c-2.3 2.3-6.1 2.3-8.5 0l-13.5-13.6c-4.3-4.3-4.3-11.3 0-15.6z"/>
-	</g>
+<svg width="54" height="44" viewBox="0 0 54 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M45.4226 8.51695C50.1228 13.2171 50.12 20.8479 45.4226 25.5453L31.9056 39.0624C29.1813 41.7867 24.7618 41.7867 22.0375 39.0624L9.94039 26.9653L28.3915 8.5142C33.0916 3.81405 40.7225 3.8168 45.4199 8.51419L45.4226 8.51695Z" fill="url(#paint0_linear_4_504)"/>
+<g filter="url(#filter0_b_4_504)">
+<path d="M8.51695 8.51772C13.2171 3.81758 20.8479 3.82033 25.5453 8.51772L43.9964 26.9688L31.8993 39.0659C29.175 41.7902 24.7556 41.7902 22.0312 39.0659L8.5142 25.5489C3.81405 20.8487 3.8168 13.2179 8.51419 8.52047L8.51695 8.51772Z" fill="url(#paint1_linear_4_504)"/>
+<path d="M9.22406 9.22483C13.5335 4.91536 20.5312 4.91781 24.8382 9.22483L42.5822 26.9688L31.1922 38.3588C28.8584 40.6926 25.0721 40.6926 22.7383 38.3588L9.2213 24.8418C4.91183 20.5323 4.91429 13.5346 9.2213 9.22758L9.22406 9.22483Z" stroke="url(#paint2_linear_4_504)" stroke-width="2"/>
+</g>
+<defs>
+<filter id="filter0_b_4_504" x="-13.0099" y="-13.0063" width="75.0063" height="72.1155" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="9"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4_504"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4_504" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_4_504" x1="47.0501" y1="8.2274" x2="17.8391" y2="35.1151" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F26DFF"/>
+<stop offset="1" stop-color="#FF027A"/>
+</linearGradient>
+<linearGradient id="paint1_linear_4_504" x1="26.4044" y1="41.5161" x2="34.3619" y2="6.27393" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.2"/>
+<stop offset="1" stop-color="white" stop-opacity="0.49"/>
+</linearGradient>
+<linearGradient id="paint2_linear_4_504" x1="3.32298" y1="17.9532" x2="38.43" y2="11.1495" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+</defs>
 </svg>
