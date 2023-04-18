@@ -164,7 +164,7 @@ export default function CrabClaws() {
             src={crabClaws.value.right?.fishImage}
             class="CrabClaws__clawWrapper__claw__prey"
           />}
-          <img 
+          <img
             class={cx(
               "CrabClaws__clawWrapper__claw__small -right",
               { "-open": rightClawMoving }

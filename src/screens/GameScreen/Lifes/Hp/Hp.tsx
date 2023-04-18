@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import crabStickImage from "@/assets/crab_sticks.png";
 import StylerComponent from "@/components/StylerComponent";
 import { CLAW_TRAVEL_DELAY } from "@/constants";
+import { sendClaw } from "@/screens/GameScreen/Crab/Index";
 import { appDimensions, crabClaws, misses, TCoords } from "@/store";
 
-import { sendClaw } from "./Crab/Index";
 import style from "./hp.scss?inline";
 
 export default function Hp() {
@@ -18,12 +18,22 @@ export default function Hp() {
     if (!appDimensions.value) {
       throw new Error("Game started, but dimensions undefined");
     }
+    const sizeX = appDimensions.value.width;
+
     return {
-      // TODO: Сделать ограничение на спавн от 10% до 90% по Х
-      x: Math.random() * appDimensions.value.width,
+      // ограничение на спавн от 10% до 90% по Х
+      x: Math.random() * (sizeX * .9 - sizeX * .1 + 1) + sizeX * .1,
       y: 0,
     };
   })());
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      hpDestroyed.value = true;
+    }, 10000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     if (!hpSpawned.value) {
@@ -69,6 +79,10 @@ export default function Hp() {
 
     sendClaw(event, crabStickImage);
     setTimeout(() => (hpDestroyed.value = true), CLAW_TRAVEL_DELAY);
+  }
+
+  if (hpDestroyed.value) {
+    return null;
   }
 
   return <StylerComponent style={style}>
