@@ -5,6 +5,37 @@
     height: 100%;
   }
 
+  .GameScreen__Timer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+  }
+
+  .GameScreen__Timer h1 {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 1;
+
+    color: white;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 20vw;
+  }
+
+  .GameScreen__Timer__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .GameScreen__bg {
     position: absolute;
     z-index: -1;

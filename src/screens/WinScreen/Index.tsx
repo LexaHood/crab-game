@@ -27,7 +27,7 @@ export default function WinScreen() {
           <div class="Recept">
             <a
               class="Recept__btn"
-              href="https://putina.org/"
+              href="https://putina.org/lightsaladcrab"
               target="_blank"
             >
               Смотреть рецепт

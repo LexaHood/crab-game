@@ -1,7 +1,7 @@
 {
   "name": "crab-game",
   "private": true,
-  "version": "0.35.0",
+  "version": "0.36.0",
   "type": "module",
   "files": [
     "dist"
@@ -15,7 +15,8 @@
     }
   },
   "scripts": {
-    "dev": "tsc && vite build",
+    "dev": "tsc && vite build --mode dev",
+    "prod": "tsc && vite build --mode prod",
     "lint": "eslint --ext .js,.ts,.tsx src",
     "todo": "leasot 'src/**' --ignore '**/assets/**'",
     "todo-cli": "leasot -x -r 'markdown' 'src/**' --ignore '**/assets/**' > TODO.md",

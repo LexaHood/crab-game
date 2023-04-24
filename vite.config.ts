@@ -14,7 +14,8 @@ export default defineConfig(({ mode }) => ({
       name: "CrabGame",
       fileName: "crab-game",
     },
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    sourcemap: mode === "dev" ? true : false,
   },
   resolve: {
     alias: {
