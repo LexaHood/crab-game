@@ -11,11 +11,11 @@ import style from "./style.scss?inline";
 import Ui from "./Ui/Ui";
 
 export default function GameScreen() {
-  const [count, setCount] = useState(3);
+  const [countTimer, setCountTimer] = useState(3);
 
   function startTimer() {
     const timerId = setTimeout(() => {
-      setCount((prevCount) => prevCount - 1);
+      if (countTimer > 0) setCountTimer((prevCount) => prevCount - 1);
     }, 1000);
     return timerId;
   }
@@ -24,7 +24,7 @@ export default function GameScreen() {
     const timerId = startTimer();
 
     return () => clearTimeout(timerId);
-  }, [count]);
+  }, [countTimer]);
 
   misses.subscribe((value) => {
     if (totalHealth - value <= 0)
@@ -37,10 +37,10 @@ export default function GameScreen() {
       <div
         class="GameScreen__Timer"
         style={{
-          display: count <= 0 ? "none" : "block"
+          display: countTimer <= 0 ? "none" : "block"
         }}
       >
-        <h1>{count}</h1>
+        <h1>{countTimer}</h1>
         <img class="GameScreen__Timer__bg" src={background} />
       </div>
       <Ui />
