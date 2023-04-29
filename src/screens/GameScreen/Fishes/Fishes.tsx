@@ -2,13 +2,12 @@ import { useState } from "preact/hooks";
 
 import StylerComponent from "@/components/StylerComponent";
 import { sendClaw } from "@/screens/GameScreen/Crab/Index";
-import { misses } from "@/store";
+import { fishTotalAmount, misses } from "@/store";
 
 import Fish from "./Fish/Fish";
 import style from "./fishes.scss?inline";
 
 export default function Fishes() {
-  const fishTotalAmount = 15;
   const [fishes] = useState(() => {
     return Array.from({ length: fishTotalAmount }, (_, i) => {
       return { id: i };

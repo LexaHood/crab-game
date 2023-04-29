@@ -2,7 +2,7 @@ import { useEffect, useState } from "preact/hooks";
 
 import background from "@/assets/background.webp";
 import StylerComponent from "@/components/StylerComponent";
-import { currentScreen, misses, totalHealth } from "@/store";
+import { currentScreen, misses, requiredWinScore, score, totalHealth } from "@/store";
 
 import Crab from "./Crab/Index";
 import Fishes from "./Fishes/Fishes";
@@ -27,8 +27,10 @@ export default function GameScreen() {
   }, [countTimer]);
 
   misses.subscribe((value) => {
-    if (totalHealth - value <= 0)
-      currentScreen.value = "win";
+    if (totalHealth - value <= 0) {
+      if (score.value >= requiredWinScore) currentScreen.value = "win";
+      else currentScreen.value = "lose";
+    }
   });
 
   return <StylerComponent style={style}>

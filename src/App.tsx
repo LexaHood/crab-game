@@ -3,15 +3,17 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import StylerComponent from "@/components/StylerComponent";
 
 import style from "./App.scss?inline";
+import LoseScreen from "./screens/EndScreen/LoseScreen/Index";
+import WinScreen from "./screens/EndScreen/WinScreen/Index";
 import GameScreen from "./screens/GameScreen/Index";
 import StartScreen from "./screens/StartScreen/Index";
-import WinScreen from "./screens/WinScreen/Index";
 import { appDimensions, currentScreen } from "./store";
 
 export const screens = {
   start: StartScreen,
   game: GameScreen,
   win: WinScreen,
+  lose: LoseScreen,
 } as const;
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
         console.log("%cПоздравляем, вы обнаружили контакты разработчиков!", "font-size: 20px");
         console.log("%c- https://kopyl.dev", "font-size: 16px");
         console.log("%c- allpetr@list.ru", "font-size: 16px");
+        console.log("%c- При участии Rudi.Design", "font-size: 16px");
       }
 
       return result;

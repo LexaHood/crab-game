@@ -3,7 +3,7 @@ import counter from "@/assets/counter.svg";
 import recept_photo from "@/assets/recept_photo.png";
 import shop from "@/assets/shop.png";
 import StylerComponent from "@/components/StylerComponent";
-import { crabClaws, currentScreen, misses, score } from "@/store";
+import { currentScreen, resetGameParams, score } from "@/store";
 
 import style from "./style.scss?inline";
 
@@ -47,9 +47,7 @@ export default function WinScreen() {
           // TODO: мб сделать утилитарный класс для всяких марджинов?
           style="margin: 30px "
           onClick={ () => {
-            score.value = 0;
-            misses.value = 0;
-            crabClaws.value = {};
+            resetGameParams();
             currentScreen.value = "game";
           } }
         >Начать заново</button>
