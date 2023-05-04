@@ -26,7 +26,7 @@ export default function WinScreen() {
           </div>
           <div class="Recept">
             <a
-              class="Recept__btn Btn"
+              class="Recept__btn"
               href="https://putina.org/lightsaladcrab"
               target="_blank"
             >
@@ -43,7 +43,9 @@ export default function WinScreen() {
           class="Shop"
         />
         <button
-          class="RestartBtn Btn"
+          class="Recept__btn"
+          // TODO: мб сделать утилитарный класс для всяких марджинов?
+          style="margin: 30px "
           onClick={ () => {
             resetGameParams();
             currentScreen.value = "game";

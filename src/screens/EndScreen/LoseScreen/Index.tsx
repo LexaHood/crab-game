@@ -12,20 +12,19 @@ export default function LoseScreen() {
         class="LoseScreen__bg"
         src={background}
       />
-      <div class="LoseScreen__contents">
-        <img
-          class="LoseBanner"
-          src={loseBanner}
-        />
-        <h1 class="Ques__Symbl">?</h1>
-        <button
-          class="Reset__btn"
-          onClick={ () => {
-            resetGameParams();
-            currentScreen.value = "game";
-          } }
-        >Попробовать снова</button>
-      </div>
+      <img
+        class="LoseBanner"
+        src={loseBanner}
+      />
+      <h1 class="Ques__Symbl">?</h1>
+      <button
+        class="Reset__btn"
+        style="margin: 30px "
+        onClick={ () => {
+          resetGameParams();
+          currentScreen.value = "game";
+        } }
+      >Попробовать снова</button>
     </div>
 
   </StylerComponent>;

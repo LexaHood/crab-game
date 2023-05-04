@@ -56,7 +56,7 @@
     justify-content: center;
     align-items: end;
     color: #fff;
-    font-size: 6vw;
+    font-size: 30px;
   }
 
   .Score__counter {
@@ -74,23 +74,22 @@
     gap: 10px;
   }
 
-  .Btn {
-    font-size: 3vw;
+  .Recept__btn {
+    background-color: #f87b43;
+    width: 240px;
+    border: 100% 150px;
+    border-radius: 10px;
+    font-size: 22px;
     text-decoration: none;
-    padding: 1vw 3vw;
+    height: auto;
+    padding: 4px;
     color: white;
     transition: background-color 0.5s ease;
     text-align: center;
   }
 
-  .Recept__btn {
-    background-color: #3DA942;
-    border-radius: 9999px;
-    padding: 10% 30%;
-
-    &:hover {
-      background-color: #2d8031;
-    }
+  .Recept__btn:hover {
+    background-color: #d51910;
   }
 
   .Recept__image {
@@ -98,12 +97,13 @@
     height: auto;
   }
 
-  .RestartBtn {
-    background-color: #f87b43;
-    border-radius: 10px;
+  @media screen and (max-width:720px) {
+    .Score {
+      font-size: 15px;
+    }
 
-    &:hover {
-      background-color: #d51910;
+    .Btn {
+      width: 240px;
     }
   }
 }
