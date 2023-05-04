@@ -1,15 +1,15 @@
 .GameApp {
-  .StartScreen {
+  .LoseScreen {
     position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10%;
+    gap: 2%;
   }
 
-  .StartScreen__bg {
+  .LoseScreen__bg {
     position: absolute;
     z-index: -1;
     top: 0;
@@ -20,42 +20,17 @@
     filter: hue-rotate(45deg) brightness(0.5);
   }
 
-  // .StartScreen__title {
-  //   font-size: 400%;
-  //   margin: 0;
-  //   color: white;
-  //   text-transform: uppercase;
-  //   filter: drop-shadow(2px 4px 6px black);
-  // }
-
-  .StartScreen__startButton {
-    padding: 1.1% 4%;
-    // width: fit-content;
-    height: 40%;
-  }
-
-  .ShopElement {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .Shop {
+  .LoseBanner {
+    width: 80%;
     height: auto;
-    width: 50%;
   }
 
   .Reset__btn {
     background-color: #f87b43;
-    width: 240px;
+    width: 25%;
     border: 100% 150px;
     border-radius: 10px;
-    font-size: 22px;
+    font-size: 2vh;
     text-decoration: none;
     height: auto;
     padding: 15px;
@@ -69,9 +44,15 @@
     background-color: #d51910;
   }
 
-  .Recept__image {
-    width: 100%;
-    height: auto;
+  .Ques__Symbl {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40vh;
+    line-height: 366px;
+    margin: 0;
+
+
+    color: #FE955D;
   }
 
   @media screen and (max-width:720px) {

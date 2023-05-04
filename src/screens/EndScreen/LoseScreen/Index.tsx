@@ -7,14 +7,16 @@ import style from "./style.scss?inline";
 
 export default function LoseScreen() {
   return <StylerComponent style={style}>
-    <div class="StartScreen">
+    <div class="LoseScreen">
       <img
-        class="StartScreen__bg"
+        class="LoseScreen__bg"
         src={background}
       />
       <img
+        class="LoseBanner"
         src={loseBanner}
       />
+      <h1 class="Ques__Symbl">?</h1>
       <button
         class="Reset__btn"
         style="margin: 30px "
