@@ -1,5 +1,7 @@
 import background from "@/assets/background.webp";
-import loseBanner from "@/assets/lose_banner.png";
+import bigQuestion from "@/assets/big_question.svg";
+import loseBanner from "@/assets/lose_banner.svg";
+import tryAgain from "@/assets/try_again.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { currentScreen,  resetGameParams } from "@/store";
 
@@ -16,15 +18,18 @@ export default function LoseScreen() {
         class="LoseBanner"
         src={loseBanner}
       />
-      <h1 class="Ques__Symbl">?</h1>
-      <button
+      <img 
+        class="Ques__Symbl"
+        src={bigQuestion} 
+      />
+      <img
+        src={tryAgain}
         class="Reset__btn"
-        style="margin: 30px "
         onClick={ () => {
           resetGameParams();
           currentScreen.value = "game";
         } }
-      >Попробовать снова</button>
+      />
     </div>
 
   </StylerComponent>;

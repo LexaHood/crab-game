@@ -2,11 +2,6 @@
   .StartScreen {
     position: relative;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
   }
 
   .StartScreen__bg {
@@ -20,14 +15,6 @@
     filter: hue-rotate(45deg) brightness(0.5);
   }
 
-  // .StartScreen__title {
-  //   font-size: 400%;
-  //   margin: 0;
-  //   color: white;
-  //   text-transform: uppercase;
-  //   filter: drop-shadow(2px 4px 6px black);
-  // }
-
   .StartScreen__startButton {
     padding: 1.1% 4%;
     // width: fit-content;
@@ -35,75 +22,83 @@
   }
 
   .ShopElement {
-    position: absolute;
+    position: relative;
     height: 100%;
-    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   .Shop {
-    height: auto;
-    width: 50%;
+    flex-grow: 1;
+    max-height: 50%;
   }
 
   .Score {
     display: flex;
-    gap: 16px;
     justify-content: center;
-    align-items: end;
+    align-items: center;
     color: #fff;
-    font-size: 30px;
+    gap: 16px;
+    height: 15%;
+    padding-top: 8%;
+    font-size: 120px;
   }
 
-  .Score__counter {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .Score__text {
+    align-self: center;
   }
 
-  .Recept {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  .Score__counter__fish {
+    height: 100%;
   }
 
-  .Recept__btn {
-    background-color: #f87b43;
-    width: 240px;
-    border: 100% 150px;
-    border-radius: 10px;
-    font-size: 22px;
-    text-decoration: none;
-    height: auto;
-    padding: 4px;
-    color: white;
-    transition: background-color 0.5s ease;
-    text-align: center;
+  .Score__recipe {
+    height: 100%;
+    display: block;
+    align-self: end;
+    position: relative;
   }
 
-  .Recept__btn:hover {
-    background-color: #d51910;
+  .Score__recipe__img {
+    display: block;
+    height: 100%;
   }
 
-  .Recept__image {
-    width: 100%;
-    height: auto;
+  .Score__recipe__btn {
+    position: absolute;
+    top: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50%;
   }
 
-  @media screen and (max-width:720px) {
+  .TryAgain__btn {
+    height: 10%;
+    transition: filter 0.5s;
+    cursor: pointer;
+  }
+
+  .TryAgain__btn:hover {
+    filter: saturate(2);
+  }
+
+  @media screen and (max-width: 1440px) {
     .Score {
-      font-size: 15px;
+      font-size: 120px;
     }
+  }
 
-    .Btn {
-      width: 240px;
+  @media screen and (max-width: 1180px) {
+    .Score {
+      font-size: 60px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .Score {
+      font-size: 30px;
     }
   }
 }

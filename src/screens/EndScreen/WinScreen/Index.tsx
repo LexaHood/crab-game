@@ -2,6 +2,8 @@ import background from "@/assets/background.webp";
 import counter from "@/assets/counter.svg";
 import recept_photo from "@/assets/recept_photo.png";
 import shop from "@/assets/shop.png";
+import tryAgain from "@/assets/try_again.svg";
+import viewRecipe from "@/assets/view_recipe.svg";
 import StylerComponent from "@/components/StylerComponent";
 import { currentScreen, resetGameParams, score } from "@/store";
 
@@ -16,41 +18,45 @@ export default function WinScreen() {
         src={background}
       />
       <div class="ShopElement">
-        <p class="Score">
-          <div class="Score__counter">
-            {score}x
+        <div class="Score">
+          <span
+            class="Score__text"
+          >{score}x</span>
+          <img
+            class="Score__counter__fish"
+            src={counter}
+          />
+          <span
+            class="Score__text"
+          >=</span>
+          <a
+            href="https://putina.org/lightsaladcrab"
+            target="_blank"
+            class="Score__recipe"
+          >
             <img
-              src={counter}
-            />
-            =
-          </div>
-          <div class="Recept">
-            <a
-              class="Recept__btn"
-              href="https://putina.org/lightsaladcrab"
-              target="_blank"
-            >
-              Смотреть рецепт
-            </a>
+              src={viewRecipe}
+              class="Score__recipe__btn"
+            ></img>
             <img
-              class="Recept__image"
               src={recept_photo}
+              class="Score__recipe__img"
             />
-          </div>
-        </p>
+          </a>
+        </div>
+
         <img
           src={shop}
           class="Shop"
         />
-        <button
-          class="Recept__btn"
-          // TODO: мб сделать утилитарный класс для всяких марджинов?
-          style="margin: 30px "
+        <img
+          src={tryAgain}
+          class="TryAgain__btn"
           onClick={ () => {
             resetGameParams();
             currentScreen.value = "game";
-          } }
-        >Начать заново</button>
+          }}
+        />
       </div>
     </div>
   </StylerComponent>;
