@@ -30,7 +30,7 @@ export default function WinScreen() {
             class="Score__text"
           >=</span>
           <a
-            href="https://putina.org/lightsaladcrab"
+            href="https://putina.org/gamerecept"
             target="_blank"
             class="Score__recipe"
           >
